@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import {
   Checkbox,
   Grid,
@@ -12,6 +13,8 @@ import { ITitle } from "../typings.d";
 interface ITitlesProps {
   titles: ITitle[];
   completed: string[];
+  showMissing: boolean;
+  showCompleted: boolean;
   onCheckboxChange: (id: string) => void;
 }
 
@@ -20,9 +23,22 @@ const Titles = (props: ITitlesProps) => {
     props.onCheckboxChange(id);
   };
 
+  const titlesToDisplay = useMemo(() => {
+    return props.titles.filter((title) => {
+      if (props.showMissing && props.showCompleted) return true;
+
+      if (props.showMissing && !props.completed.includes(title.id)) return true;
+
+      if (props.showCompleted && props.completed.includes(title.id))
+        return true;
+
+      return false;
+    });
+  }, [props.titles, props.showCompleted, props.showMissing, props.completed]);
+
   return (
     <Grid templateColumns="repeat(14, 1fr)" gap={1}>
-      {props.titles.map((title) => (
+      {titlesToDisplay.map((title) => (
         <GridItem key={title.id}>
           <Stack>
             <StackItem display="flex" justifyContent="center">

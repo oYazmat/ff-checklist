@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
-import { Grid, GridItem, Text } from "@chakra-ui/react";
+import { Button, Grid, GridItem, Text } from "@chakra-ui/react";
 import { titlesConfig } from "../config";
 import { TYPE } from "../typings.d";
 import Titles from "./Titles";
 
 const Home = () => {
   const [loaded, setLoaded] = useState(false);
+  const [showMissing, setShowMissing] = useState(true);
+  const [showCompleted, setShowCompleted] = useState(true);
   const [completed, setCompleted] = useState<string[]>([]);
 
   useEffect(() => {
@@ -21,6 +23,14 @@ const Home = () => {
       localStorage.setItem("completed", JSON.stringify(completed));
     }
   }, [loaded, completed]);
+
+  const handleCompletedDisplayClick = () => {
+    setShowCompleted((prev) => !prev);
+  };
+
+  const handleMissingDisplayClick = () => {
+    setShowMissing((prev) => !prev);
+  };
 
   const handleCheckboxChange = (id: string) => {
     if (completed.includes(id)) {
@@ -44,6 +54,14 @@ const Home = () => {
 
   return (
     <Grid templateColumns="repeat(10, 1fr)" gap={1}>
+      <GridItem colSpan={10} textAlign="center">
+        <Button marginRight={1} onClick={handleMissingDisplayClick}>
+          {showMissing ? "Hide Missing" : "Show Missing"}
+        </Button>
+        <Button onClick={handleCompletedDisplayClick}>
+          {showCompleted ? "Hide Completed" : "Show Completed"}
+        </Button>
+      </GridItem>
       <GridItem colSpan={1} bg="blue.500" alignSelf="center">
         <Text>Mainline</Text>
       </GridItem>
@@ -52,6 +70,8 @@ const Home = () => {
           titles={getMainlineTitles()}
           completed={completed}
           onCheckboxChange={handleCheckboxChange}
+          showMissing={showMissing}
+          showCompleted={showCompleted}
         />
       </GridItem>
       <GridItem colSpan={1} bg="blue.500" alignSelf="center">
@@ -62,6 +82,8 @@ const Home = () => {
           titles={getSpinOffTitles()}
           completed={completed}
           onCheckboxChange={handleCheckboxChange}
+          showMissing={showMissing}
+          showCompleted={showCompleted}
         />
       </GridItem>
       <GridItem colSpan={1} bg="blue.500" alignSelf="center">
@@ -72,6 +94,8 @@ const Home = () => {
           titles={getUnofficialTitles()}
           completed={completed}
           onCheckboxChange={handleCheckboxChange}
+          showMissing={showMissing}
+          showCompleted={showCompleted}
         />
       </GridItem>
     </Grid>
