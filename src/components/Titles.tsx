@@ -41,7 +41,7 @@ const Titles = (props: ITitlesProps) => {
             <StackItem>
               <Checkbox
                 onChange={handleCheckboxChange(title.id)}
-                checked={props.completed.includes(title.id)}
+                isChecked={props.completed.includes(title.id)}
               />
             </StackItem>
           </Stack>

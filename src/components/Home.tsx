@@ -1,15 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Grid, GridItem, Text } from "@chakra-ui/react";
 import { titlesConfig } from "../config";
 import { TYPE } from "../typings.d";
 import Titles from "./Titles";
 
 const Home = () => {
+  const [loaded, setLoaded] = useState(false);
   const [completed, setCompleted] = useState<string[]>([]);
+
+  useEffect(() => {
+    const stored = localStorage.getItem("completed");
+    if (stored !== null) {
+      setCompleted(JSON.parse(stored));
+    }
+    setLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (loaded) {
+      localStorage.setItem("completed", JSON.stringify(completed));
+    }
+  }, [loaded, completed]);
 
   const handleCheckboxChange = (id: string) => {
     if (completed.includes(id)) {
-      setCompleted((prev) => prev.filter((i) => i === id));
+      setCompleted((prev) => prev.filter((i) => i !== id));
     } else {
       setCompleted((prev) => [...prev, id]);
     }
