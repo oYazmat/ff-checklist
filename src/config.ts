@@ -163,6 +163,12 @@ const titlesConfig: ITitle[] = [
     type: TYPE.SPIN_OFF,
     logo: "sopffo-2.png",
   },
+  {
+    title: "Adventures of Mana",
+    plate_forms: [PLATE_FORM.VITA],
+    type: TYPE.UNOFFICIAL,
+    logo: "adventures-mana.png",
+  },
 ];
 
 export { titlesConfig };
