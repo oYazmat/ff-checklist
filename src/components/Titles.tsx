@@ -39,10 +39,22 @@ const Titles = (props: ITitlesProps) => {
   return (
     <Grid templateColumns="repeat(14, 1fr)" gap={1}>
       {titlesToDisplay.map((title) => (
-        <GridItem key={title.id}>
+        <GridItem
+          key={title.id}
+          borderColor={`${
+            props.completed.includes(title.id) ? "green" : "red"
+          }.500`}
+          borderStyle="solid"
+          borderWidth={1}
+          p={1}
+        >
           <Stack>
             <StackItem display="flex" justifyContent="center">
-              <Image src={`logos/${title.logo}`} alt={title.title} />
+              <Image
+                src={`logos/${title.logo}`}
+                alt={title.title}
+                title={title.title}
+              />
             </StackItem>
             <StackItem>
               <Text fontSize="xs" fontWeight="bold">
