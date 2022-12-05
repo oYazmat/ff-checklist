@@ -12,6 +12,7 @@ export enum TYPE {
 }
 
 export interface ITitle {
+  id: string;
   title: string;
   plate_forms: PLATE_FORM[];
   type: TYPE;

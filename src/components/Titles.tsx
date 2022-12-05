@@ -11,13 +11,19 @@ import { ITitle } from "../typings.d";
 
 interface ITitlesProps {
   titles: ITitle[];
+  completed: string[];
+  onCheckboxChange: (id: string) => void;
 }
 
 const Titles = (props: ITitlesProps) => {
+  const handleCheckboxChange = (id: string) => () => {
+    props.onCheckboxChange(id);
+  };
+
   return (
     <Grid templateColumns="repeat(14, 1fr)" gap={1}>
       {props.titles.map((title) => (
-        <GridItem>
+        <GridItem key={title.id}>
           <Stack>
             <StackItem display="flex" justifyContent="center">
               <Image src={`logos/${title.logo}`} alt={title.title} />
@@ -33,7 +39,10 @@ const Titles = (props: ITitlesProps) => {
               </Text>
             </StackItem>
             <StackItem>
-              <Checkbox />
+              <Checkbox
+                onChange={handleCheckboxChange(title.id)}
+                checked={props.completed.includes(title.id)}
+              />
             </StackItem>
           </Stack>
         </GridItem>
