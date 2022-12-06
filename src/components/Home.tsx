@@ -1,12 +1,15 @@
-import { useState, useEffect } from "react";
-import { Button, Grid, GridItem } from "@chakra-ui/react";
+import { useState, useEffect, useRef } from "react";
+import { Button, StackItem, Stack, useColorMode } from "@chakra-ui/react";
 import Categories from "./Categories";
+import { exportAsImage } from "../utils/exportAsImage";
 
 const Home = () => {
   const [loaded, setLoaded] = useState(false);
   const [showMissing, setShowMissing] = useState(true);
   const [showCompleted, setShowCompleted] = useState(true);
   const [completed, setCompleted] = useState<string[]>([]);
+  const exportRef = useRef<HTMLDivElement>(null);
+  const { colorMode } = useColorMode();
 
   useEffect(() => {
     const stored = localStorage.getItem("completed");
@@ -38,25 +41,40 @@ const Home = () => {
     }
   };
 
+  const handleScreenshotClick = () => {
+    exportAsImage(exportRef.current, "ff-checklist", colorMode);
+  };
+
   return (
-    <Grid gap={1}>
-      <GridItem textAlign="center">
-        <Button marginRight={1} onClick={handleMissingDisplayClick}>
-          {showMissing ? "Hide Missing" : "Show Missing"}
-        </Button>
-        <Button onClick={handleCompletedDisplayClick}>
-          {showCompleted ? "Hide Completed" : "Show Completed"}
-        </Button>
-      </GridItem>
-      <GridItem>
-        <Categories
-          completed={completed}
-          onCheckboxChange={handleCheckboxChange}
-          showMissing={showMissing}
-          showCompleted={showCompleted}
-        />
-      </GridItem>
-    </Grid>
+    <Stack gap={1}>
+      <StackItem>
+        <Stack direction="row" gap={1} justifyContent="center">
+          <StackItem>
+            <Button onClick={handleMissingDisplayClick}>
+              {showMissing ? "Hide Missing" : "Show Missing"}
+            </Button>
+          </StackItem>
+          <StackItem>
+            <Button onClick={handleCompletedDisplayClick}>
+              {showCompleted ? "Hide Completed" : "Show Completed"}
+            </Button>
+          </StackItem>
+          <StackItem>
+            <Button onClick={handleScreenshotClick}>Take a Screenshot</Button>
+          </StackItem>
+        </Stack>
+      </StackItem>
+      <StackItem>
+        <div ref={exportRef}>
+          <Categories
+            completed={completed}
+            onCheckboxChange={handleCheckboxChange}
+            showMissing={showMissing}
+            showCompleted={showCompleted}
+          />
+        </div>
+      </StackItem>
+    </Stack>
   );
 };
 

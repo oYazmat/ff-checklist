@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import {
   Checkbox,
-  Grid,
+  SimpleGrid,
   GridItem,
   Image,
   Stack,
@@ -37,7 +37,7 @@ const Titles = (props: ITitlesProps) => {
   }, [props.titles, props.showCompleted, props.showMissing, props.completed]);
 
   return (
-    <Grid templateColumns="repeat(14, 1fr)" gap={1}>
+    <SimpleGrid columns={14} gap={1}>
       {titlesToDisplay.map((title) => (
         <GridItem
           key={title.id}
@@ -75,7 +75,7 @@ const Titles = (props: ITitlesProps) => {
           </Stack>
         </GridItem>
       ))}
-    </Grid>
+    </SimpleGrid>
   );
 };
 

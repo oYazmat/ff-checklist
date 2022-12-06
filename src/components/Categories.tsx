@@ -1,4 +1,4 @@
-import { Grid, GridItem, Text } from "@chakra-ui/react";
+import { SimpleGrid, GridItem, Text } from "@chakra-ui/react";
 import { titlesConfig } from "../config";
 import { TYPE } from "../typings.d";
 import Titles from "./Titles";
@@ -28,7 +28,7 @@ const Categories = (props: ICategoriesProps) => {
   };
 
   return (
-    <Grid templateColumns="repeat(10, 1fr)" gap={1}>
+    <SimpleGrid columns={10} gap={1}>
       <GridItem colSpan={1} bg="blue.500" alignSelf="center">
         <Text>Mainline</Text>
       </GridItem>
@@ -77,7 +77,7 @@ const Categories = (props: ICategoriesProps) => {
           showCompleted={props.showCompleted}
         />
       </GridItem>
-    </Grid>
+    </SimpleGrid>
   );
 };
 
