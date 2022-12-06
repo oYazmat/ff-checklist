@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-import { Button, StackItem, Stack, useColorMode } from "@chakra-ui/react";
+import { StackItem, Stack, useColorMode } from "@chakra-ui/react";
 import Categories from "./Categories";
 import { exportAsImage } from "../utils/exportAsImage";
+import ActionButtons from "./ActionButtons";
 
 const Home = () => {
   const [loaded, setLoaded] = useState(false);
@@ -53,26 +54,15 @@ const Home = () => {
   return (
     <Stack gap={1}>
       <StackItem>
-        <Stack direction="row" gap={1} justifyContent="center">
-          <StackItem>
-            <Button onClick={handleMissingDisplayClick}>
-              {showMissing ? "Hide Missing" : "Show Missing"}
-            </Button>
-          </StackItem>
-          <StackItem>
-            <Button onClick={handleCompletedDisplayClick}>
-              {showCompleted ? "Hide Completed" : "Show Completed"}
-            </Button>
-          </StackItem>
-          <StackItem>
-            <Button onClick={handleDLCDisplayClick}>
-              {showDLC ? "Hide DLC" : "Show DLC"}
-            </Button>
-          </StackItem>
-          <StackItem>
-            <Button onClick={handleScreenshotClick}>Take a Screenshot</Button>
-          </StackItem>
-        </Stack>
+        <ActionButtons
+          showMissing={showMissing}
+          showCompleted={showCompleted}
+          showDLC={showDLC}
+          onMissingDisplayClick={handleMissingDisplayClick}
+          onCompletedDisplayClick={handleCompletedDisplayClick}
+          onDLCDisplayClick={handleDLCDisplayClick}
+          onScreenshotClick={handleScreenshotClick}
+        />
       </StackItem>
       <StackItem>
         <div ref={exportRef}>
