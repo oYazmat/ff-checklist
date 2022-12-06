@@ -7,6 +7,7 @@ interface ICategoriesProps {
   completed: string[];
   showMissing: boolean;
   showCompleted: boolean;
+  showDLC: boolean;
   onCheckboxChange: (id: string) => void;
 }
 
@@ -65,18 +66,22 @@ const Categories = (props: ICategoriesProps) => {
           showCompleted={props.showCompleted}
         />
       </GridItem>
-      <GridItem colSpan={1} bg="blue.500" alignSelf="center">
-        <Text>DLC</Text>
-      </GridItem>
-      <GridItem colSpan={9}>
-        <Titles
-          titles={getDLCTitles()}
-          completed={props.completed}
-          onCheckboxChange={props.onCheckboxChange}
-          showMissing={props.showMissing}
-          showCompleted={props.showCompleted}
-        />
-      </GridItem>
+      {props.showDLC && (
+        <>
+          <GridItem colSpan={1} bg="blue.500" alignSelf="center">
+            <Text>DLC</Text>
+          </GridItem>
+          <GridItem colSpan={9}>
+            <Titles
+              titles={getDLCTitles()}
+              completed={props.completed}
+              onCheckboxChange={props.onCheckboxChange}
+              showMissing={props.showMissing}
+              showCompleted={props.showCompleted}
+            />
+          </GridItem>
+        </>
+      )}
     </SimpleGrid>
   );
 };

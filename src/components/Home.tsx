@@ -7,6 +7,7 @@ const Home = () => {
   const [loaded, setLoaded] = useState(false);
   const [showMissing, setShowMissing] = useState(true);
   const [showCompleted, setShowCompleted] = useState(true);
+  const [showDLC, setShowDLC] = useState(true);
   const [completed, setCompleted] = useState<string[]>([]);
   const exportRef = useRef<HTMLDivElement>(null);
   const { colorMode } = useColorMode();
@@ -31,6 +32,10 @@ const Home = () => {
 
   const handleMissingDisplayClick = () => {
     setShowMissing((prev) => !prev);
+  };
+
+  const handleDLCDisplayClick = () => {
+    setShowDLC((prev) => !prev);
   };
 
   const handleCheckboxChange = (id: string) => {
@@ -60,6 +65,11 @@ const Home = () => {
             </Button>
           </StackItem>
           <StackItem>
+            <Button onClick={handleDLCDisplayClick}>
+              {showDLC ? "Hide DLC" : "Show DLC"}
+            </Button>
+          </StackItem>
+          <StackItem>
             <Button onClick={handleScreenshotClick}>Take a Screenshot</Button>
           </StackItem>
         </Stack>
@@ -71,6 +81,7 @@ const Home = () => {
             onCheckboxChange={handleCheckboxChange}
             showMissing={showMissing}
             showCompleted={showCompleted}
+            showDLC={showDLC}
           />
         </div>
       </StackItem>
