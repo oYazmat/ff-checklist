@@ -30,8 +30,8 @@ const Categories = (props: ICategoriesProps) => {
 
   return (
     <SimpleGrid columns={10} gap={1}>
-      <GridItem colSpan={1} bg="blue.500" alignSelf="center">
-        <Text>Mainline</Text>
+      <GridItem colSpan={1} alignSelf="center">
+        <Text fontWeight="extrabold">Mainline</Text>
       </GridItem>
       <GridItem colSpan={9}>
         <Titles
@@ -42,8 +42,8 @@ const Categories = (props: ICategoriesProps) => {
           showCompleted={props.showCompleted}
         />
       </GridItem>
-      <GridItem colSpan={1} bg="blue.500" alignSelf="center">
-        <Text>Spin-Off</Text>
+      <GridItem colSpan={1} alignSelf="center">
+        <Text fontWeight="extrabold">Spin-Off</Text>
       </GridItem>
       <GridItem colSpan={9}>
         <Titles
@@ -54,8 +54,8 @@ const Categories = (props: ICategoriesProps) => {
           showCompleted={props.showCompleted}
         />
       </GridItem>
-      <GridItem colSpan={1} bg="blue.500" alignSelf="center">
-        <Text>Unofficial</Text>
+      <GridItem colSpan={1} alignSelf="center">
+        <Text fontWeight="extrabold">Unofficial</Text>
       </GridItem>
       <GridItem colSpan={9}>
         <Titles
@@ -68,8 +68,8 @@ const Categories = (props: ICategoriesProps) => {
       </GridItem>
       {props.showDLC && (
         <>
-          <GridItem colSpan={1} bg="blue.500" alignSelf="center">
-            <Text>DLC</Text>
+          <GridItem colSpan={1} alignSelf="center">
+            <Text fontWeight="extrabold">DLC</Text>
           </GridItem>
           <GridItem colSpan={9}>
             <Titles
