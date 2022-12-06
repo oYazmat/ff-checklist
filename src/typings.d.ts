@@ -9,6 +9,7 @@ export enum TYPE {
   MAINLINE = "mainline",
   SPIN_OFF = "spin-off",
   UNOFFICIAL = "unofficial",
+  DLC = "dlc",
 }
 
 export interface ITitle {

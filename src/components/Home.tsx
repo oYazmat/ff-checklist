@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
-import { Button, Grid, GridItem, Text } from "@chakra-ui/react";
-import { titlesConfig } from "../config";
-import { TYPE } from "../typings.d";
-import Titles from "./Titles";
+import { Button, Grid, GridItem } from "@chakra-ui/react";
+import Categories from "./Categories";
 
 const Home = () => {
   const [loaded, setLoaded] = useState(false);
@@ -40,21 +38,9 @@ const Home = () => {
     }
   };
 
-  const getMainlineTitles = () => {
-    return titlesConfig.filter((title) => title.type === TYPE.MAINLINE);
-  };
-
-  const getSpinOffTitles = () => {
-    return titlesConfig.filter((title) => title.type === TYPE.SPIN_OFF);
-  };
-
-  const getUnofficialTitles = () => {
-    return titlesConfig.filter((title) => title.type === TYPE.UNOFFICIAL);
-  };
-
   return (
-    <Grid templateColumns="repeat(10, 1fr)" gap={1}>
-      <GridItem colSpan={10} textAlign="center">
+    <Grid gap={1}>
+      <GridItem textAlign="center">
         <Button marginRight={1} onClick={handleMissingDisplayClick}>
           {showMissing ? "Hide Missing" : "Show Missing"}
         </Button>
@@ -62,36 +48,8 @@ const Home = () => {
           {showCompleted ? "Hide Completed" : "Show Completed"}
         </Button>
       </GridItem>
-      <GridItem colSpan={1} bg="blue.500" alignSelf="center">
-        <Text>Mainline</Text>
-      </GridItem>
-      <GridItem colSpan={9}>
-        <Titles
-          titles={getMainlineTitles()}
-          completed={completed}
-          onCheckboxChange={handleCheckboxChange}
-          showMissing={showMissing}
-          showCompleted={showCompleted}
-        />
-      </GridItem>
-      <GridItem colSpan={1} bg="blue.500" alignSelf="center">
-        <Text>Spin-Off</Text>
-      </GridItem>
-      <GridItem colSpan={9}>
-        <Titles
-          titles={getSpinOffTitles()}
-          completed={completed}
-          onCheckboxChange={handleCheckboxChange}
-          showMissing={showMissing}
-          showCompleted={showCompleted}
-        />
-      </GridItem>
-      <GridItem colSpan={1} bg="blue.500" alignSelf="center">
-        <Text>Unofficial</Text>
-      </GridItem>
-      <GridItem colSpan={9}>
-        <Titles
-          titles={getUnofficialTitles()}
+      <GridItem>
+        <Categories
           completed={completed}
           onCheckboxChange={handleCheckboxChange}
           showMissing={showMissing}
