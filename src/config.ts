@@ -353,6 +353,20 @@ const titlesConfig: ITitle[] = [
     type: TYPE.UNOFFICIAL,
     logo: "adventures-mana.png",
   },
+  {
+    id: "07-4",
+    title: "Crisis Core: Final Fantasy VII - Reunion",
+    plate_forms: [PLATE_FORM.PS5],
+    type: TYPE.SPIN_OFF,
+    logo: "07-4.png",
+  },
+  {
+    id: "07-5",
+    title: "Crisis Core: Final Fantasy VII - Reunion",
+    plate_forms: [PLATE_FORM.PS4],
+    type: TYPE.SPIN_OFF,
+    logo: "07-5.png",
+  },
 ];
 
 export { titlesConfig };
