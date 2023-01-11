@@ -212,6 +212,13 @@ const titlesConfig: ITitle[] = [
     logo: "14-2-dlc-7.png",
   },
   {
+    id: "14-2-dlc-8",
+    title: "Final Fantasy XIV:  Endwalker: Gods Revel, Lands Tremble",
+    plate_forms: [PLATE_FORM.PS5],
+    type: TYPE.DLC,
+    logo: "14-2-dlc-8.png",
+  },
+  {
     id: "15",
     title: "Final Fantasy XV",
     plate_forms: [PLATE_FORM.PS4],
