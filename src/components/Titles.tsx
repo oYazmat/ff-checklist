@@ -7,6 +7,7 @@ import {
   Stack,
   StackItem,
   Text,
+  useColorMode,
 } from "@chakra-ui/react";
 import { ITitle } from "../typings.d";
 
@@ -20,6 +21,8 @@ interface ITitlesProps {
 }
 
 const Titles = (props: ITitlesProps) => {
+  const { colorMode } = useColorMode();
+
   const handleCheckboxChange = (id: string) => () => {
     props.onCheckboxChange(id);
   };
@@ -37,6 +40,10 @@ const Titles = (props: ITitlesProps) => {
     });
   }, [props.titles, props.showCompleted, props.showMissing, props.completed]);
 
+  const getColor = (titleId: string) => {
+    return props.completed.includes(titleId) ? "green" : "red";
+  };
+
   if (titlesToDisplay.length === 0) return <></>;
 
   return (
@@ -49,9 +56,10 @@ const Titles = (props: ITitlesProps) => {
           {titlesToDisplay.map((title) => (
             <GridItem
               key={title.id}
-              borderColor={`${
-                props.completed.includes(title.id) ? "green" : "red"
-              }.500`}
+              backgroundColor={`${getColor(title.id)}.${
+                colorMode === "light" ? "100" : "900"
+              }`}
+              borderColor={`${getColor(title.id)}.500`}
               borderStyle="solid"
               borderWidth={1}
               p={1}
