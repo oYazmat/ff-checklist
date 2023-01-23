@@ -86,6 +86,20 @@ const titlesConfig: ITitle[] = [
     logo: "07.png",
   },
   {
+    id: "07-2",
+    title: "Final Fantasy VII Remake",
+    plate_forms: [PLATE_FORM.PS4],
+    type: TYPE.MAINLINE,
+    logo: "07-2.png",
+  },
+  {
+    id: "07-3",
+    title: "Final Fantasy VII Remake",
+    plate_forms: [PLATE_FORM.PS5],
+    type: TYPE.MAINLINE,
+    logo: "07-3.png",
+  },
+  {
     id: "08",
     title: "Final Fantasy VIII",
     plate_forms: [PLATE_FORM.PS4],
@@ -287,20 +301,6 @@ const titlesConfig: ITitle[] = [
     plate_forms: [PLATE_FORM.PS4],
     type: TYPE.SPIN_OFF,
     logo: "15-2.png",
-  },
-  {
-    id: "07-2",
-    title: "Final Fantasy VII Remake",
-    plate_forms: [PLATE_FORM.PS4],
-    type: TYPE.MAINLINE,
-    logo: "07-2.png",
-  },
-  {
-    id: "07-3",
-    title: "Final Fantasy VII Remake",
-    plate_forms: [PLATE_FORM.PS5],
-    type: TYPE.MAINLINE,
-    logo: "07-3.png",
   },
   {
     id: "07-3-dlc-1",

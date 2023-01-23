@@ -11,6 +11,7 @@ import {
 import { ITitle } from "../typings.d";
 
 interface ITitlesProps {
+  header: string;
   titles: ITitle[];
   completed: string[];
   showMissing: boolean;
@@ -36,45 +37,54 @@ const Titles = (props: ITitlesProps) => {
     });
   }, [props.titles, props.showCompleted, props.showMissing, props.completed]);
 
+  if (titlesToDisplay.length === 0) return <></>;
+
   return (
-    <SimpleGrid columns={14} gap={1}>
-      {titlesToDisplay.map((title) => (
-        <GridItem
-          key={title.id}
-          borderColor={`${
-            props.completed.includes(title.id) ? "green" : "red"
-          }.500`}
-          borderStyle="solid"
-          borderWidth={1}
-          p={1}
-        >
-          <Stack>
-            <StackItem display="flex" justifyContent="center">
-              <Image
-                src={`logos/${title.logo}`}
-                alt={title.title}
-                title={title.title}
-              />
-            </StackItem>
-            <StackItem>
-              <Text fontSize="xs" fontWeight="bold">
-                {title.plate_forms.join(" - ")}
-              </Text>
-            </StackItem>
-            <StackItem>
-              <Text fontSize="xs" fontWeight="bold">
-                {title.title}
-              </Text>
-            </StackItem>
-            <StackItem>
-              <Checkbox
-                onChange={handleCheckboxChange(title.id)}
-                isChecked={props.completed.includes(title.id)}
-              />
-            </StackItem>
-          </Stack>
-        </GridItem>
-      ))}
+    <SimpleGrid gap={1}>
+      <GridItem alignSelf="center" paddingY={2}>
+        <Text fontWeight="extrabold">{props.header}</Text>
+      </GridItem>
+      <GridItem>
+        <SimpleGrid columns={14} gap={1}>
+          {titlesToDisplay.map((title) => (
+            <GridItem
+              key={title.id}
+              borderColor={`${
+                props.completed.includes(title.id) ? "green" : "red"
+              }.500`}
+              borderStyle="solid"
+              borderWidth={1}
+              p={1}
+            >
+              <Stack>
+                <StackItem display="flex" justifyContent="center">
+                  <Image
+                    src={`logos/${title.logo}`}
+                    alt={title.title}
+                    title={title.title}
+                  />
+                </StackItem>
+                <StackItem>
+                  <Text fontSize="xs" fontWeight="bold">
+                    {title.plate_forms.join(" - ")}
+                  </Text>
+                </StackItem>
+                <StackItem>
+                  <Text fontSize="xs" fontWeight="bold">
+                    {title.title}
+                  </Text>
+                </StackItem>
+                <StackItem>
+                  <Checkbox
+                    onChange={handleCheckboxChange(title.id)}
+                    isChecked={props.completed.includes(title.id)}
+                  />
+                </StackItem>
+              </Stack>
+            </GridItem>
+          ))}
+        </SimpleGrid>
+      </GridItem>
     </SimpleGrid>
   );
 };

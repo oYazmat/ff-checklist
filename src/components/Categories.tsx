@@ -1,4 +1,4 @@
-import { SimpleGrid, GridItem, Text } from "@chakra-ui/react";
+import { useMemo } from "react";
 import { titlesConfig } from "../config";
 import { TYPE } from "../typings.d";
 import Titles from "./Titles";
@@ -12,77 +12,62 @@ interface ICategoriesProps {
 }
 
 const Categories = (props: ICategoriesProps) => {
-  const getMainlineTitles = () => {
+  const mainlineTitles = useMemo(() => {
     return titlesConfig.filter((title) => title.type === TYPE.MAINLINE);
-  };
+  }, []);
 
-  const getSpinOffTitles = () => {
+  const spinOffTitles = useMemo(() => {
     return titlesConfig.filter((title) => title.type === TYPE.SPIN_OFF);
-  };
+  }, []);
 
-  const getUnofficialTitles = () => {
+  const unofficialTitles = useMemo(() => {
     return titlesConfig.filter((title) => title.type === TYPE.UNOFFICIAL);
-  };
+  }, []);
 
-  const getDLCTitles = () => {
+  const dlcTitles = useMemo(() => {
     return titlesConfig.filter((title) => title.type === TYPE.DLC);
-  };
+  }, []);
 
   return (
-    <SimpleGrid columns={10} gap={1}>
-      <GridItem colSpan={1} alignSelf="center">
-        <Text fontWeight="extrabold">Mainline</Text>
-      </GridItem>
-      <GridItem colSpan={9}>
-        <Titles
-          titles={getMainlineTitles()}
-          completed={props.completed}
-          onCheckboxChange={props.onCheckboxChange}
-          showMissing={props.showMissing}
-          showCompleted={props.showCompleted}
-        />
-      </GridItem>
-      <GridItem colSpan={1} alignSelf="center">
-        <Text fontWeight="extrabold">Spin-Off</Text>
-      </GridItem>
-      <GridItem colSpan={9}>
-        <Titles
-          titles={getSpinOffTitles()}
-          completed={props.completed}
-          onCheckboxChange={props.onCheckboxChange}
-          showMissing={props.showMissing}
-          showCompleted={props.showCompleted}
-        />
-      </GridItem>
-      <GridItem colSpan={1} alignSelf="center">
-        <Text fontWeight="extrabold">Unofficial</Text>
-      </GridItem>
-      <GridItem colSpan={9}>
-        <Titles
-          titles={getUnofficialTitles()}
-          completed={props.completed}
-          onCheckboxChange={props.onCheckboxChange}
-          showMissing={props.showMissing}
-          showCompleted={props.showCompleted}
-        />
-      </GridItem>
+    <>
+      <Titles
+        header="Mainline"
+        titles={mainlineTitles}
+        completed={props.completed}
+        onCheckboxChange={props.onCheckboxChange}
+        showMissing={props.showMissing}
+        showCompleted={props.showCompleted}
+      />
+
+      <Titles
+        header="Spin-Off"
+        titles={spinOffTitles}
+        completed={props.completed}
+        onCheckboxChange={props.onCheckboxChange}
+        showMissing={props.showMissing}
+        showCompleted={props.showCompleted}
+      />
+
+      <Titles
+        header="Unofficial"
+        titles={unofficialTitles}
+        completed={props.completed}
+        onCheckboxChange={props.onCheckboxChange}
+        showMissing={props.showMissing}
+        showCompleted={props.showCompleted}
+      />
+
       {props.showDLC && (
-        <>
-          <GridItem colSpan={1} alignSelf="center">
-            <Text fontWeight="extrabold">DLC</Text>
-          </GridItem>
-          <GridItem colSpan={9}>
-            <Titles
-              titles={getDLCTitles()}
-              completed={props.completed}
-              onCheckboxChange={props.onCheckboxChange}
-              showMissing={props.showMissing}
-              showCompleted={props.showCompleted}
-            />
-          </GridItem>
-        </>
+        <Titles
+          header="DLC"
+          titles={dlcTitles}
+          completed={props.completed}
+          onCheckboxChange={props.onCheckboxChange}
+          showMissing={props.showMissing}
+          showCompleted={props.showCompleted}
+        />
       )}
-    </SimpleGrid>
+    </>
   );
 };
 
