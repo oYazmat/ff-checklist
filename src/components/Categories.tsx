@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import { titlesConfig } from "../config";
 import { TYPE } from "../typings.d";
 import Titles from "./Titles";
@@ -12,21 +11,19 @@ interface ICategoriesProps {
 }
 
 const Categories = (props: ICategoriesProps) => {
-  const mainlineTitles = useMemo(() => {
-    return titlesConfig.filter((title) => title.type === TYPE.MAINLINE);
-  }, []);
+  const mainlineTitles = titlesConfig.filter(
+    (title) => title.type === TYPE.MAINLINE
+  );
 
-  const spinOffTitles = useMemo(() => {
-    return titlesConfig.filter((title) => title.type === TYPE.SPIN_OFF);
-  }, []);
+  const spinOffTitles = titlesConfig.filter(
+    (title) => title.type === TYPE.SPIN_OFF
+  );
 
-  const unofficialTitles = useMemo(() => {
-    return titlesConfig.filter((title) => title.type === TYPE.UNOFFICIAL);
-  }, []);
+  const unofficialTitles = titlesConfig.filter(
+    (title) => title.type === TYPE.UNOFFICIAL
+  );
 
-  const dlcTitles = useMemo(() => {
-    return titlesConfig.filter((title) => title.type === TYPE.DLC);
-  }, []);
+  const dlcTitles = titlesConfig.filter((title) => title.type === TYPE.DLC);
 
   return (
     <>

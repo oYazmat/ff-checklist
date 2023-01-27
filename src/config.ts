@@ -332,6 +332,13 @@ const titlesConfig: ITitle[] = [
     logo: "sopffo-dlc-2.png",
   },
   {
+    id: "sopffo-dlc-3",
+    title: "Stranger of Paradise: Final Fantasy Origin - DIFFERENT FUTURE",
+    plate_forms: [PLATE_FORM.PS4],
+    type: TYPE.DLC,
+    logo: "sopffo-dlc-3.png",
+  },
+  {
     id: "sopffo-2",
     title: "Stranger of Paradise: Final Fantasy Origin",
     plate_forms: [PLATE_FORM.PS5],
@@ -352,6 +359,13 @@ const titlesConfig: ITitle[] = [
     plate_forms: [PLATE_FORM.PS5],
     type: TYPE.DLC,
     logo: "sopffo-2-dlc-2.png",
+  },
+  {
+    id: "sopffo-2-dlc-3",
+    title: "Stranger of Paradise: Final Fantasy Origin - DIFFERENT FUTURE",
+    plate_forms: [PLATE_FORM.PS5],
+    type: TYPE.DLC,
+    logo: "sopffo-2-dlc-3.png",
   },
   {
     id: "adventures-mana",
