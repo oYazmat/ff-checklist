@@ -1,8 +1,16 @@
 import { useState, useEffect, useRef } from "react";
-import { StackItem, Stack, useColorMode } from "@chakra-ui/react";
+import {
+  StackItem,
+  Stack,
+  useColorMode,
+  Link,
+  Text,
+  Heading,
+} from "@chakra-ui/react";
 import Categories from "./Categories";
 import { exportAsImage } from "../utils/exportAsImage";
 import ActionButtons from "./ActionButtons";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 const Home = () => {
   const [loaded, setLoaded] = useState(false);
@@ -57,7 +65,10 @@ const Home = () => {
   };
 
   return (
-    <Stack gap={1}>
+    <Stack gap={3}>
+      <StackItem>
+        <Heading>Final Fantasy Trophy Completion Checklist</Heading>
+      </StackItem>
       <StackItem>
         <ActionButtons
           showMissing={showMissing}
@@ -82,6 +93,27 @@ const Home = () => {
             showComingSoon={showComingSoon}
           />
         </div>
+      </StackItem>
+      <StackItem>
+        <Text>
+          Made by{" "}
+          <Link
+            href="https://psnprofiles.com/oYazmat"
+            isExternal
+            color="teal.500"
+          >
+            Yazmat <ExternalLinkIcon mx="2px" />
+          </Link>
+          for the{" "}
+          <Link
+            href="https://forum.psnprofiles.com/topic/127226-project-platinum-final-fantasy/"
+            isExternal
+            color="teal.500"
+          >
+            Project Platinum: Final Fantasy
+            <ExternalLinkIcon mx="2px" />
+          </Link>
+        </Text>
       </StackItem>
     </Stack>
   );
