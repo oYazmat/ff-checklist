@@ -18,4 +18,5 @@ export interface ITitle {
   plate_forms: PLATE_FORM[];
   type: TYPE;
   logo: string;
+  unreleased?: boolean;
 }

@@ -9,6 +9,7 @@ const Home = () => {
   const [showMissing, setShowMissing] = useState(true);
   const [showCompleted, setShowCompleted] = useState(true);
   const [showDLC, setShowDLC] = useState(true);
+  const [showComingSoon, setShowComingSoon] = useState(false);
   const [completed, setCompleted] = useState<string[]>([]);
   const exportRef = useRef<HTMLDivElement>(null);
   const { colorMode } = useColorMode();
@@ -39,6 +40,10 @@ const Home = () => {
     setShowDLC((prev) => !prev);
   };
 
+  const handleComingSoonDisplayClick = () => {
+    setShowComingSoon((prev) => !prev);
+  };
+
   const handleCheckboxChange = (id: string) => {
     if (completed.includes(id)) {
       setCompleted((prev) => prev.filter((i) => i !== id));
@@ -58,10 +63,12 @@ const Home = () => {
           showMissing={showMissing}
           showCompleted={showCompleted}
           showDLC={showDLC}
+          showComingSoon={showComingSoon}
           onMissingDisplayClick={handleMissingDisplayClick}
           onCompletedDisplayClick={handleCompletedDisplayClick}
           onDLCDisplayClick={handleDLCDisplayClick}
           onScreenshotClick={handleScreenshotClick}
+          onComingSoonDisplayClick={handleComingSoonDisplayClick}
         />
       </StackItem>
       <StackItem>
@@ -72,6 +79,7 @@ const Home = () => {
             showMissing={showMissing}
             showCompleted={showCompleted}
             showDLC={showDLC}
+            showComingSoon={showComingSoon}
           />
         </div>
       </StackItem>

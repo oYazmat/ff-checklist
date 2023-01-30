@@ -7,6 +7,7 @@ interface ICategoriesProps {
   showMissing: boolean;
   showCompleted: boolean;
   showDLC: boolean;
+  showComingSoon: boolean;
   onCheckboxChange: (id: string) => void;
 }
 
@@ -34,6 +35,7 @@ const Categories = (props: ICategoriesProps) => {
         onCheckboxChange={props.onCheckboxChange}
         showMissing={props.showMissing}
         showCompleted={props.showCompleted}
+        showComingSoon={props.showComingSoon}
       />
 
       <Titles
@@ -43,6 +45,7 @@ const Categories = (props: ICategoriesProps) => {
         onCheckboxChange={props.onCheckboxChange}
         showMissing={props.showMissing}
         showCompleted={props.showCompleted}
+        showComingSoon={props.showComingSoon}
       />
 
       <Titles
@@ -52,6 +55,7 @@ const Categories = (props: ICategoriesProps) => {
         onCheckboxChange={props.onCheckboxChange}
         showMissing={props.showMissing}
         showCompleted={props.showCompleted}
+        showComingSoon={props.showComingSoon}
       />
 
       {props.showDLC && (
@@ -62,6 +66,7 @@ const Categories = (props: ICategoriesProps) => {
           onCheckboxChange={props.onCheckboxChange}
           showMissing={props.showMissing}
           showCompleted={props.showCompleted}
+          showComingSoon={props.showComingSoon}
         />
       )}
     </>

@@ -17,6 +17,7 @@ interface ITitlesProps {
   completed: string[];
   showMissing: boolean;
   showCompleted: boolean;
+  showComingSoon: boolean;
   onCheckboxChange: (id: string) => void;
 }
 
@@ -27,16 +28,27 @@ const Titles = (props: ITitlesProps) => {
 
   const titlesToDisplay = useMemo(() => {
     return props.titles.filter((title) => {
-      if (props.showMissing && props.showCompleted) return true;
-
-      if (props.showMissing && !props.completed.includes(title.id)) return true;
+      if (
+        props.showMissing &&
+        !props.completed.includes(title.id) &&
+        !title.unreleased
+      )
+        return true;
 
       if (props.showCompleted && props.completed.includes(title.id))
         return true;
 
+      if (props.showComingSoon && title.unreleased) return true;
+
       return false;
     });
-  }, [props.titles, props.showCompleted, props.showMissing, props.completed]);
+  }, [
+    props.titles,
+    props.showCompleted,
+    props.showMissing,
+    props.showComingSoon,
+    props.completed,
+  ]);
 
   const getColor = (titleId: string) => {
     return props.completed.includes(titleId) ? "green" : "red";
@@ -56,8 +68,14 @@ const Titles = (props: ITitlesProps) => {
           {titlesToDisplay.map((title) => (
             <GridItem
               key={title.id}
-              backgroundColor={`${getColor(title.id)}.${bgAlpha}`}
-              borderColor={`${getColor(title.id)}.500`}
+              backgroundColor={
+                title.unreleased
+                  ? undefined
+                  : `${getColor(title.id)}.${bgAlpha}`
+              }
+              borderColor={
+                title.unreleased ? undefined : `${getColor(title.id)}.500`
+              }
               borderStyle="solid"
               borderWidth={1}
               p={1}
@@ -84,6 +102,7 @@ const Titles = (props: ITitlesProps) => {
                   <Checkbox
                     onChange={handleCheckboxChange(title.id)}
                     isChecked={props.completed.includes(title.id)}
+                    disabled={title.unreleased}
                   />
                 </StackItem>
               </Stack>

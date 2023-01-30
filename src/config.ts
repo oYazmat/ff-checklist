@@ -2,6 +2,54 @@ import { ITitle, PLATE_FORM, TYPE } from "./typings.d";
 
 const titlesConfig: ITitle[] = [
   {
+    id: "1",
+    title: "Final Fantasy I",
+    plate_forms: [PLATE_FORM.PS4],
+    type: TYPE.MAINLINE,
+    logo: "coming-soon.png",
+    unreleased: true,
+  },
+  {
+    id: "2",
+    title: "Final Fantasy II",
+    plate_forms: [PLATE_FORM.PS4],
+    type: TYPE.MAINLINE,
+    logo: "coming-soon.png",
+    unreleased: true,
+  },
+  {
+    id: "3",
+    title: "Final Fantasy III",
+    plate_forms: [PLATE_FORM.PS4],
+    type: TYPE.MAINLINE,
+    logo: "coming-soon.png",
+    unreleased: true,
+  },
+  {
+    id: "4",
+    title: "Final Fantasy IV",
+    plate_forms: [PLATE_FORM.PS4],
+    type: TYPE.MAINLINE,
+    logo: "coming-soon.png",
+    unreleased: true,
+  },
+  {
+    id: "5",
+    title: "Final Fantasy V",
+    plate_forms: [PLATE_FORM.PS4],
+    type: TYPE.MAINLINE,
+    logo: "coming-soon.png",
+    unreleased: true,
+  },
+  {
+    id: "6",
+    title: "Final Fantasy VI",
+    plate_forms: [PLATE_FORM.PS4],
+    type: TYPE.MAINLINE,
+    logo: "coming-soon.png",
+    unreleased: true,
+  },
+  {
     id: "crystal-defenders",
     title: "Crystal Defenders",
     plate_forms: [PLATE_FORM.PS3],
@@ -387,6 +435,22 @@ const titlesConfig: ITitle[] = [
     plate_forms: [PLATE_FORM.PS4],
     type: TYPE.SPIN_OFF,
     logo: "07-5.png",
+  },
+  {
+    id: "16",
+    title: "Final Fantasy XVI",
+    plate_forms: [PLATE_FORM.PS5],
+    type: TYPE.MAINLINE,
+    logo: "coming-soon.png",
+    unreleased: true,
+  },
+  {
+    id: "theatrhythm",
+    title: "Theatrhythm Final Bar Line",
+    plate_forms: [PLATE_FORM.PS4],
+    type: TYPE.SPIN_OFF,
+    logo: "coming-soon.png",
+    unreleased: true,
   },
 ];
 
