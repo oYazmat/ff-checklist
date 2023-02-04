@@ -448,7 +448,7 @@ const titlesConfig: ITitle[] = [
     id: "theatrhythm",
     title: "Theatrhythm Final Bar Line",
     plate_forms: [PLATE_FORM.PS4],
-    type: TYPE.SPIN_OFF,
+    type: TYPE.UNOFFICIAL,
     logo: "coming-soon.png",
     unreleased: true,
   },
