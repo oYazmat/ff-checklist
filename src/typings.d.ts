@@ -27,6 +27,5 @@ export interface IBadge {
   logo: string;
   gameIds?: string[];
   gameTypes?: TYPE[];
-  unsupported?: boolean;
   nbrRequired?: number;
 }

@@ -459,8 +459,7 @@ const badgesConfig: IBadge[] = [
     title: "Close Enough",
     logo: "close-enough.png",
     nbrRequired: 3,
-    // TODO: what are optional games?
-    unsupported: true,
+    gameTypes: [TYPE.SPIN_OFF, TYPE.UNOFFICIAL],
   },
   {
     id: "02-ffighterz",
@@ -481,7 +480,6 @@ const badgesConfig: IBadge[] = [
     logo: "mainline.png",
     gameTypes: [TYPE.MAINLINE],
     // TODO: how to support either XIV PS4 or PS5?
-    unsupported: true,
   },
   {
     id: "05-most-popular",
@@ -508,7 +506,6 @@ const badgesConfig: IBadge[] = [
     gameTypes: [TYPE.SPIN_OFF],
     nbrRequired: 5,
     // TODO: Are different plate-forms considered in the count?
-    unsupported: true,
   },
   {
     id: "09-pixel-enthusiast",
@@ -523,7 +520,6 @@ const badgesConfig: IBadge[] = [
     gameIds: ["07", "07-2", "07-3", "07-4", "07-5"],
     nbrRequired: 3,
     // TODO: Are different plate-forms considered in the count?
-    unsupported: true,
   },
   {
     id: "11-x-enthusiast",

@@ -22,8 +22,20 @@ const Badges = (props: IBadgesProps) => {
 
     badgesConfig.forEach((badge) => {
       if (badge.gameIds !== undefined) {
-        if (difference(badge.gameIds, props.completed).length === 0) {
-          eligibleBadges.push(badge);
+        if (badge.nbrRequired === undefined) {
+          if (difference(badge.gameIds, props.completed).length === 0) {
+            eligibleBadges.push(badge);
+          }
+        }
+
+        if (badge.nbrRequired !== undefined) {
+          const filteredTitles = props.completed.filter((completedTitle) =>
+            badge.gameIds!.includes(completedTitle)
+          );
+
+          if (filteredTitles.length >= badge.nbrRequired) {
+            eligibleBadges.push(badge);
+          }
         }
       } else if (badge.gameTypes !== undefined) {
         if (badge.nbrRequired === undefined) {
@@ -46,9 +58,11 @@ const Badges = (props: IBadgesProps) => {
           }
         }
       } else {
-        // TODO: badges requiring all games
-        console.warn("badge requiring all games unsupported: ");
-        console.warn(badge);
+        const titleIds = titles.map((title) => title.id);
+
+        if (difference(titleIds, props.completed).length === 0) {
+          eligibleBadges.push(badge);
+        }
       }
     });
 
