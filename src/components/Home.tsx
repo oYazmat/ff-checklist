@@ -94,7 +94,7 @@ const Home = () => {
         <Stack gap={3} ref={exportRef}>
           {showBadges && (
             <StackItem>
-              <Badges />
+              <Badges completed={completed} />
             </StackItem>
           )}
           <StackItem>
