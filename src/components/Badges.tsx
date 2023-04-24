@@ -1,7 +1,7 @@
 import { badgesConfig, titlesConfig } from "../config";
 import { Image, VStack, HStack, StackItem, Text } from "@chakra-ui/react";
 import { useMemo } from "react";
-import { difference } from "lodash";
+import { difference, intersection } from "lodash";
 import { IBadge } from "../typings";
 
 interface IBadgesProps {
@@ -23,7 +23,15 @@ const Badges = (props: IBadgesProps) => {
     badgesConfig.forEach((badge) => {
       if (badge.gameIds !== undefined) {
         if (badge.nbrRequired === undefined) {
-          if (difference(badge.gameIds, props.completed).length === 0) {
+          const uncompleted = badge.gameIds.find((item) => {
+            if (typeof item === "string") {
+              return !props.completed.includes(item);
+            } else {
+              return intersection(item, props.completed).length === 0;
+            }
+          });
+
+          if (uncompleted === undefined) {
             eligibleBadges.push(badge);
           }
         }
