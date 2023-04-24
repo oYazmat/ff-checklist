@@ -1,4 +1,4 @@
-import { ITitle, PLATE_FORM, TYPE } from "./typings.d";
+import { ITitle, IBadge, PLATE_FORM, TYPE } from "./typings.d";
 
 const titlesConfig: ITitle[] = [
   {
@@ -275,10 +275,18 @@ const titlesConfig: ITitle[] = [
   },
   {
     id: "14-2-dlc-8",
-    title: "Final Fantasy XIV:  Endwalker: Gods Revel, Lands Tremble",
+    title: "Final Fantasy XIV: Endwalker: Gods Revel, Lands Tremble",
     plate_forms: [PLATE_FORM.PS5],
     type: TYPE.DLC,
     logo: "14-2-dlc-8.png",
+  },
+  {
+    id: "14-2-dlc-9",
+    title: "Final Fantasy XIV: The Dark Throne",
+    plate_forms: [PLATE_FORM.PS5],
+    type: TYPE.DLC,
+    logo: "coming-soon.png",
+    unreleased: true,
   },
   {
     id: "15",
@@ -453,4 +461,113 @@ const titlesConfig: ITitle[] = [
   },
 ];
 
-export { titlesConfig };
+const badgesConfig: IBadge[] = [
+  {
+    id: "01-close-enough",
+    title: "Close Enough",
+    logo: "close-enough.png",
+    nbrRequired: 3,
+    gameTypes: [TYPE.SPIN_OFF, TYPE.UNOFFICIAL],
+  },
+  {
+    id: "02-ffighterz",
+    title: "FFighterz",
+    logo: "ffighterz.png",
+    gameIds: ["dissidia-nt-free", "dissidia-nt"],
+    nbrRequired: 2,
+  },
+  {
+    id: "03-golden-era",
+    title: "Golden Era",
+    logo: "golden-era.png",
+    gameIds: ["07", "08", "09"],
+  },
+  {
+    id: "04-mainline",
+    title: "Mainline",
+    logo: "mainline.png",
+    gameIds: [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "07",
+      "08",
+      "09",
+      "10",
+      "12",
+      "13",
+      ["14", "14-2"],
+      "15",
+    ],
+  },
+  {
+    id: "05-most-popular",
+    title: "Most Popular",
+    logo: "most-popular.png",
+    gameIds: ["07", "10", "15"],
+  },
+  {
+    id: "06-obscurity",
+    title: "Obscurity",
+    logo: "obscurity.png",
+    gameIds: ["woff", "type-0", "crystal-chronicles"],
+  },
+  {
+    id: "07-perfectionist",
+    title: "Perfectionist",
+    logo: "perfectionist.png",
+    // TODO: Not possible to manage if someone had it in the past?
+  },
+  {
+    id: "08-spinner",
+    title: "Spinner",
+    logo: "spinner.png",
+    gameTypes: [TYPE.SPIN_OFF],
+    nbrRequired: 5,
+    // TODO: Are different plate-forms considered in the count?
+  },
+  {
+    id: "09-pixel-enthusiast",
+    title: "Pixel Enthusiast",
+    logo: "pixel-enthusiast.png",
+    gameIds: ["1", "2", "3", "4", "5", "6"],
+  },
+  {
+    id: "10-vii-enthusiast",
+    title: "VII Enthusiast",
+    logo: "vii-enthusiast.png",
+    gameIds: ["07", "07-2", "07-3", "07-4", "07-5"],
+    nbrRequired: 3,
+    // TODO: Are different plate-forms considered in the count?
+  },
+  {
+    id: "11-x-enthusiast",
+    title: "X Enthusiast",
+    logo: "x-enthusiast.png",
+    gameIds: ["10", "10-2"],
+  },
+  {
+    id: "12-xiii-enthusiast",
+    title: "XIII Enthusiast",
+    logo: "xiii-enthusiast.png",
+    gameIds: ["13", "13-2", "13-3"],
+  },
+  {
+    id: "13-xiv-enthusiast",
+    title: "XIV Enthusiast",
+    logo: "xiv-enthusiast.png",
+    gameIds: ["14", "14-2"],
+  },
+  {
+    id: "14-xv-enthusiast",
+    title: "XV Enthusiast",
+    logo: "xv-enthusiast.png",
+    nbrRequired: 3,
+    gameIds: ["king-tale", "monster-deep", "15", "15-2", "15-3"],
+  },
+];
+
+export { titlesConfig, badgesConfig };
