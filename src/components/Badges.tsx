@@ -9,9 +9,11 @@ interface IBadgesProps {
 }
 
 const Badges = (props: IBadgesProps) => {
+  const titles = titlesConfig.filter((title) => title.unreleased !== true);
+
   const completedTitles = useMemo(() => {
-    return titlesConfig.filter((title) => props.completed.includes(title.id));
-  }, [props.completed]);
+    return titles.filter((title) => props.completed.includes(title.id));
+  }, [props.completed, titles]);
 
   const badgesToDisplay = useMemo(() => {
     if (props.completed.length === 0) return [];
@@ -25,9 +27,13 @@ const Badges = (props: IBadgesProps) => {
         }
       } else if (badge.gameTypes !== undefined) {
         if (badge.nbrRequired === undefined) {
-          // TODO: unsupported
-          console.warn("badge configuration unsupported: ");
-          console.warn(badge);
+          const filteredTitles = titles
+            .filter((title) => badge.gameTypes?.includes(title.type))
+            .map((title) => title.id);
+
+          if (difference(filteredTitles, props.completed).length === 0) {
+            eligibleBadges.push(badge);
+          }
         }
 
         if (badge.nbrRequired !== undefined) {
@@ -47,7 +53,7 @@ const Badges = (props: IBadgesProps) => {
     });
 
     return eligibleBadges;
-  }, [props.completed, completedTitles]);
+  }, [props.completed, completedTitles, titles]);
 
   return (
     <VStack gap={3}>
