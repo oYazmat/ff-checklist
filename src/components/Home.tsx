@@ -11,6 +11,7 @@ import Categories from "./Categories";
 import { exportAsImage } from "../utils/exportAsImage";
 import ActionButtons from "./ActionButtons";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
+import Badges from "./Badges";
 
 const Home = () => {
   const [loaded, setLoaded] = useState(false);
@@ -18,6 +19,7 @@ const Home = () => {
   const [showCompleted, setShowCompleted] = useState(true);
   const [showDLC, setShowDLC] = useState(true);
   const [showComingSoon, setShowComingSoon] = useState(false);
+  const [showBadges, setShowBadges] = useState(true);
   const [completed, setCompleted] = useState<string[]>([]);
   const exportRef = useRef<HTMLDivElement>(null);
   const { colorMode } = useColorMode();
@@ -52,6 +54,10 @@ const Home = () => {
     setShowComingSoon((prev) => !prev);
   };
 
+  const handleBadgesDisplayClick = () => {
+    setShowBadges((prev) => !prev);
+  };
+
   const handleCheckboxChange = (id: string) => {
     if (completed.includes(id)) {
       setCompleted((prev) => prev.filter((i) => i !== id));
@@ -75,24 +81,33 @@ const Home = () => {
           showCompleted={showCompleted}
           showDLC={showDLC}
           showComingSoon={showComingSoon}
+          showBadges={showBadges}
           onMissingDisplayClick={handleMissingDisplayClick}
           onCompletedDisplayClick={handleCompletedDisplayClick}
           onDLCDisplayClick={handleDLCDisplayClick}
           onScreenshotClick={handleScreenshotClick}
           onComingSoonDisplayClick={handleComingSoonDisplayClick}
+          onBadgesDisplayClick={handleBadgesDisplayClick}
         />
       </StackItem>
       <StackItem>
-        <div ref={exportRef}>
-          <Categories
-            completed={completed}
-            onCheckboxChange={handleCheckboxChange}
-            showMissing={showMissing}
-            showCompleted={showCompleted}
-            showDLC={showDLC}
-            showComingSoon={showComingSoon}
-          />
-        </div>
+        <Stack gap={3} ref={exportRef}>
+          {showBadges && (
+            <StackItem>
+              <Badges />
+            </StackItem>
+          )}
+          <StackItem>
+            <Categories
+              completed={completed}
+              onCheckboxChange={handleCheckboxChange}
+              showMissing={showMissing}
+              showCompleted={showCompleted}
+              showDLC={showDLC}
+              showComingSoon={showComingSoon}
+            />
+          </StackItem>
+        </Stack>
       </StackItem>
       <StackItem>
         <Text>
