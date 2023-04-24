@@ -81,7 +81,7 @@ const Badges = (props: IBadgesProps) => {
     <VStack gap={3}>
       <StackItem>
         <Text as="i">
-          Note: Badges are in Beta, they might not work as expected!
+          Note: Badges are in Beta, they might or might not work as expected!
         </Text>
       </StackItem>
       <StackItem>
