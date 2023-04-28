@@ -467,7 +467,7 @@ const badgesConfig: IBadge[] = [
     title: "Close Enough",
     logo: "close-enough.png",
     nbrRequired: 3,
-    gameTypes: [TYPE.SPIN_OFF, TYPE.UNOFFICIAL],
+    gameTypes: [TYPE.UNOFFICIAL],
   },
   {
     id: "02-ffighterz",
