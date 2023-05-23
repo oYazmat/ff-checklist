@@ -7,7 +7,6 @@ const titlesConfig: ITitle[] = [
     plate_forms: [PLATE_FORM.PS4],
     type: TYPE.MAINLINE,
     logo: "01.png",
-    unreleased: false,
   },
   {
     id: "2",
@@ -15,7 +14,6 @@ const titlesConfig: ITitle[] = [
     plate_forms: [PLATE_FORM.PS4],
     type: TYPE.MAINLINE,
     logo: "02.png",
-    unreleased: false,
   },
   {
     id: "3",
@@ -23,7 +21,6 @@ const titlesConfig: ITitle[] = [
     plate_forms: [PLATE_FORM.PS4],
     type: TYPE.MAINLINE,
     logo: "03.png",
-    unreleased: false,
   },
   {
     id: "4",
@@ -31,7 +28,6 @@ const titlesConfig: ITitle[] = [
     plate_forms: [PLATE_FORM.PS4],
     type: TYPE.MAINLINE,
     logo: "04.png",
-    unreleased: false,
   },
   {
     id: "5",
@@ -39,7 +35,6 @@ const titlesConfig: ITitle[] = [
     plate_forms: [PLATE_FORM.PS4],
     type: TYPE.MAINLINE,
     logo: "05.png",
-    unreleased: false,
   },
   {
     id: "6",
@@ -47,7 +42,6 @@ const titlesConfig: ITitle[] = [
     plate_forms: [PLATE_FORM.PS4],
     type: TYPE.MAINLINE,
     logo: "06.png",
-    unreleased: false,
   },
   {
     id: "crystal-defenders",
@@ -285,8 +279,7 @@ const titlesConfig: ITitle[] = [
     title: "Final Fantasy XIV: The Dark Throne",
     plate_forms: [PLATE_FORM.PS5],
     type: TYPE.DLC,
-    logo: "coming-soon.png",
-    unreleased: true,
+    logo: "14-2-dlc-9.png",
   },
   {
     id: "15",
