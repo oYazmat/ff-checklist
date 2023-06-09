@@ -7,11 +7,13 @@ interface IActionButtonsProps {
   showCompleted: boolean;
   showDLC: boolean;
   showComingSoon: boolean;
+  showBadges: boolean;
   onMissingDisplayClick: () => void;
   onCompletedDisplayClick: () => void;
   onDLCDisplayClick: () => void;
   onScreenshotClick: () => void;
   onComingSoonDisplayClick: () => void;
+  onBadgesDisplayClick: () => void;
 }
 
 const ActionButtons = (props: IActionButtonsProps) => {
@@ -43,6 +45,13 @@ const ActionButtons = (props: IActionButtonsProps) => {
           show={props.showComingSoon}
           title="Coming Soon"
           onClick={props.onComingSoonDisplayClick}
+        />
+      </StackItem>
+      <StackItem>
+        <ShowButton
+          show={props.showBadges}
+          title="Badges"
+          onClick={props.onBadgesDisplayClick}
         />
       </StackItem>
       <StackItem>

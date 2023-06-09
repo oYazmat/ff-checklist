@@ -20,3 +20,12 @@ export interface ITitle {
   logo: string;
   unreleased?: boolean;
 }
+
+export interface IBadge {
+  id: string;
+  title: string;
+  logo: string;
+  gameIds?: (string | string[])[];
+  gameTypes?: TYPE[];
+  nbrRequired?: number;
+}
