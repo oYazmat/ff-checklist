@@ -142,6 +142,14 @@ const titlesConfig: ITitle[] = [
     logo: "07-3.png",
   },
   {
+    id: "07-6",
+    title: "Final Fantasy VII Rebirth",
+    plate_forms: [PLATE_FORM.PS5],
+    type: TYPE.MAINLINE,
+    logo: "coming-soon.png",
+    unreleased: true,
+  },
+  {
     id: "08",
     title: "Final Fantasy VIII",
     plate_forms: [PLATE_FORM.PS4],
