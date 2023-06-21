@@ -450,8 +450,7 @@ const titlesConfig: ITitle[] = [
     title: "Final Fantasy XVI",
     plate_forms: [PLATE_FORM.PS5],
     type: TYPE.MAINLINE,
-    logo: "coming-soon.png",
-    unreleased: true,
+    logo: "16.png",
   },
   {
     id: "theatrhythm",
