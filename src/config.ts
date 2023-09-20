@@ -290,6 +290,14 @@ const titlesConfig: ITitle[] = [
     logo: "14-2-dlc-9.png",
   },
   {
+    id: "14-2-dlc-10",
+    title: "Final Fantasy XIV: Growing Light",
+    plate_forms: [PLATE_FORM.PS5],
+    type: TYPE.DLC,
+    logo: "coming-soon.png",
+    unreleased: true,
+  },
+  {
     id: "15",
     title: "Final Fantasy XV",
     plate_forms: [PLATE_FORM.PS4],
