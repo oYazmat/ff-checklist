@@ -10,6 +10,7 @@ export enum TYPE {
   SPIN_OFF = "spin-off",
   UNOFFICIAL = "unofficial",
   DLC = "dlc",
+  XIV_PS5_DLC = "xiv-ps5-dlc",
 }
 
 export interface ITitle {

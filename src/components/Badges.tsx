@@ -1,5 +1,5 @@
 import { badgesConfig, titlesConfig } from "../config";
-import { Image, VStack, HStack, StackItem, Text } from "@chakra-ui/react";
+import { Image, VStack, HStack, StackItem } from "@chakra-ui/react";
 import { useMemo } from "react";
 import { difference, intersection } from "lodash";
 import { IBadge } from "../typings";
@@ -79,11 +79,6 @@ const Badges = (props: IBadgesProps) => {
 
   return (
     <VStack gap={3}>
-      <StackItem>
-        <Text as="i">
-          Note: Badges are in Beta, they might or might not work as expected!
-        </Text>
-      </StackItem>
       <StackItem>
         {badgesToDisplay?.length === 0 && (
           <Image src="badges/nothing.png" alt="nothing" title="Nothing" />
