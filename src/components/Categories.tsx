@@ -26,6 +26,10 @@ const Categories = (props: ICategoriesProps) => {
 
   const dlcTitles = titlesConfig.filter((title) => title.type === TYPE.DLC);
 
+  const xivDLCTitles = titlesConfig.filter(
+    (title) => title.type === TYPE.XIV_PS5_DLC
+  );
+
   return (
     <>
       <Titles
@@ -59,15 +63,27 @@ const Categories = (props: ICategoriesProps) => {
       />
 
       {props.showDLC && (
-        <Titles
-          header="DLC"
-          titles={dlcTitles}
-          completed={props.completed}
-          onCheckboxChange={props.onCheckboxChange}
-          showMissing={props.showMissing}
-          showCompleted={props.showCompleted}
-          showComingSoon={props.showComingSoon}
-        />
+        <>
+          <Titles
+            header="DLC"
+            titles={dlcTitles}
+            completed={props.completed}
+            onCheckboxChange={props.onCheckboxChange}
+            showMissing={props.showMissing}
+            showCompleted={props.showCompleted}
+            showComingSoon={props.showComingSoon}
+          />
+
+          <Titles
+            header="FF XIV DLC"
+            titles={xivDLCTitles}
+            completed={props.completed}
+            onCheckboxChange={props.onCheckboxChange}
+            showMissing={props.showMissing}
+            showCompleted={props.showCompleted}
+            showComingSoon={props.showComingSoon}
+          />
+        </>
       )}
     </>
   );
