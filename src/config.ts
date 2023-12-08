@@ -468,6 +468,21 @@ const titlesConfig: ITitle[] = [
     logo: "16.png",
   },
   {
+    id: "16-dlc-1",
+    title: "Final Fantasy XVI - Echoes of the Fallen",
+    plate_forms: [PLATE_FORM.PS5],
+    type: TYPE.DLC,
+    logo: "16-dlc-1.png",
+  },
+  {
+    id: "16-dlc-2",
+    title: "Final Fantasy XVI - The Rising Tide",
+    plate_forms: [PLATE_FORM.PS5],
+    type: TYPE.DLC,
+    logo: "coming-soon.png",
+    unreleased: true,
+  },
+  {
     id: "theatrhythm",
     title: "Theatrhythm: Final Bar Line",
     plate_forms: [PLATE_FORM.PS4],
