@@ -23,8 +23,7 @@ const ActionButtons = (props: IActionButtonsProps) => {
 
   const handleCopyToClipboard = () => {
     if (loggedUser) {
-      // TODO: make link dynamic
-      const link = `https://oyazmat.github.io/ff-checklist/?id=${loggedUser.uid}`;
+      const link = `${process.env.REACT_APP_BASE_LINK}?id=${loggedUser.uid}`;
 
       navigator.clipboard.writeText(link);
 
