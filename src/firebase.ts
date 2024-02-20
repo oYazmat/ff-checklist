@@ -2,10 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { firebaseConfig } from "./firebase.config.dev";
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { firebaseConfig } from "./firebase.config.dev"; // TODO: manage dev & prod
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -20,8 +17,11 @@ provider.setCustomParameters({
 
 // Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);
+
+// Initialize Firebase Realtime Database and get a reference to the service
 export const db = getDatabase(app);
 
+// Utils
 export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 
 export default app;
