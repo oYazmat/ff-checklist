@@ -1,3 +1,5 @@
+import { User } from "firebase/auth";
+
 export enum PLATE_FORM {
   PS3 = "PS3",
   PS4 = "PS4",
@@ -29,4 +31,13 @@ export interface IBadge {
   gameIds?: (string | string[])[];
   gameTypes?: TYPE[];
   nbrRequired?: number;
+}
+
+export interface IContext {
+  profileIdToLoad: String | null;
+  readOnly: boolean;
+  authenticating: boolean;
+  loaded: boolean;
+  updateLoaded: Function;
+  loggedUser: User | null;
 }

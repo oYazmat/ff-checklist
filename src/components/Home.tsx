@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import {
   StackItem,
   Stack,
@@ -7,14 +7,17 @@ import {
   Text,
   Heading,
 } from "@chakra-ui/react";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
+import { ref, child, get, update, DataSnapshot } from "firebase/database";
 import Categories from "./Categories";
 import { exportAsImage } from "../utils/exportAsImage";
 import ActionButtons from "./ActionButtons";
-import { ExternalLinkIcon } from "@chakra-ui/icons";
 import Badges from "./Badges";
+import { Context } from "../Context";
+import { db } from "../firebase";
+import Loader from "./Loader";
 
 const Home = () => {
-  const [loaded, setLoaded] = useState(false);
   const [showMissing, setShowMissing] = useState(true);
   const [showCompleted, setShowCompleted] = useState(true);
   const [showDLC, setShowDLC] = useState(true);
@@ -23,20 +26,67 @@ const Home = () => {
   const [completed, setCompleted] = useState<string[]>([]);
   const exportRef = useRef<HTMLDivElement>(null);
   const { colorMode } = useColorMode();
+  const {
+    readOnly,
+    profileIdToLoad,
+    authenticating,
+    loaded,
+    updateLoaded,
+    loggedUser,
+  } = useContext(Context);
+  const dbRef = ref(db);
 
   useEffect(() => {
-    const stored = localStorage.getItem("completed");
-    if (stored !== null) {
-      setCompleted(JSON.parse(stored));
-    }
-    setLoaded(true);
-  }, []);
+    updateLoaded(false);
+    setCompleted([]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loggedUser]);
 
   useEffect(() => {
-    if (loaded) {
-      localStorage.setItem("completed", JSON.stringify(completed));
+    if (readOnly) {
+      get(child(dbRef, `completed/${profileIdToLoad}`)).then(
+        handleDbDataLoaded
+      );
+    } else {
+      if (!authenticating && !loaded) {
+        if (loggedUser) {
+          get(child(dbRef, `completed/${loggedUser.uid}`)).then(
+            handleDbDataLoaded
+          );
+        } else {
+          const localStoredData = localStorage.getItem("completed");
+
+          if (localStoredData !== null) {
+            setCompleted(JSON.parse(localStoredData));
+          }
+
+          updateLoaded(true);
+        }
+      }
     }
-  }, [loaded, completed]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [authenticating, loaded]);
+
+  useEffect(() => {
+    if (!readOnly && !authenticating && loaded) {
+      if (loggedUser) {
+        update(dbRef, {
+          [`completed/${loggedUser.uid}`]: completed,
+        });
+      } else {
+        localStorage.setItem("completed", JSON.stringify(completed));
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [authenticating, completed]);
+
+  const handleDbDataLoaded = (snapshot: DataSnapshot) => {
+    const dbStoredData = snapshot.exists() ? snapshot.val() : [];
+
+    setCompleted(dbStoredData);
+
+    updateLoaded(true);
+  };
 
   const handleCompletedDisplayClick = () => {
     setShowCompleted((prev) => !prev);
@@ -69,6 +119,10 @@ const Home = () => {
   const handleScreenshotClick = () => {
     exportAsImage(exportRef.current, "ff-checklist", colorMode);
   };
+
+  if (authenticating || !loaded) {
+    return <Loader />;
+  }
 
   return (
     <Stack gap={3}>
