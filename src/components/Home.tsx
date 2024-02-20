@@ -26,7 +26,7 @@ const Home = () => {
   const [completed, setCompleted] = useState<string[]>([]);
   const exportRef = useRef<HTMLDivElement>(null);
   const { colorMode } = useColorMode();
-  const { authenticating, loaded, updateLoaded, loggedUser } =
+  const { readOnly, authenticating, loaded, updateLoaded, loggedUser } =
     useContext(Context);
   const dbRef = ref(db);
 
@@ -60,7 +60,7 @@ const Home = () => {
   }, [authenticating, loaded]);
 
   useEffect(() => {
-    if (!authenticating && loaded) {
+    if (!readOnly && !authenticating && loaded) {
       if (loggedUser) {
         update(dbRef, {
           [`completed/${loggedUser.uid}`]: completed,

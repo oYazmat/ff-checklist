@@ -34,8 +34,10 @@ export interface IBadge {
 }
 
 export interface IContext {
-  authenticating: Boolean;
-  loaded: Boolean;
+  profileIdToLoad: String | null;
+  readOnly: boolean;
+  authenticating: boolean;
+  loaded: boolean;
   updateLoaded: Function;
   loggedUser: User | null;
 }

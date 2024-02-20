@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useContext, useMemo } from "react";
 import {
   Checkbox,
   SimpleGrid,
@@ -10,6 +10,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { ITitle } from "../typings.d";
+import { Context } from "../Context";
 
 interface ITitlesProps {
   header: string;
@@ -22,6 +23,8 @@ interface ITitlesProps {
 }
 
 const Titles = (props: ITitlesProps) => {
+  const { readOnly } = useContext(Context);
+
   const handleCheckboxChange = (id: string) => () => {
     props.onCheckboxChange(id);
   };
@@ -102,7 +105,7 @@ const Titles = (props: ITitlesProps) => {
                   <Checkbox
                     onChange={handleCheckboxChange(title.id)}
                     isChecked={props.completed.includes(title.id)}
-                    disabled={title.unreleased}
+                    disabled={readOnly || title.unreleased}
                   />
                 </StackItem>
               </Stack>

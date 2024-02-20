@@ -7,6 +7,10 @@ import { Context } from "./Context";
 import { auth } from "./firebase";
 
 export const App = () => {
+  const queryParameters = new URLSearchParams(window.location.search);
+  const profileIdToLoad = queryParameters.get("id");
+  const readOnly = !!profileIdToLoad;
+
   const [loaded, setLoaded] = useState(false);
   const [authenticating, setAuthenticating] = useState(true);
   const [loggedUser, setLoggedUser] = useState<User | null>(null);
@@ -25,7 +29,14 @@ export const App = () => {
   return (
     <ChakraProvider theme={theme}>
       <Context.Provider
-        value={{ authenticating, loaded, updateLoaded, loggedUser }}
+        value={{
+          profileIdToLoad,
+          readOnly,
+          authenticating,
+          loaded,
+          updateLoaded,
+          loggedUser,
+        }}
       >
         <Box textAlign="center" fontSize="xl">
           <Grid minH="100vh" p={3}>

@@ -7,7 +7,7 @@ import { auth, signInWithGooglePopup } from "../firebase";
 import { Context } from "../Context";
 
 const NavBar = () => {
-  const { loggedUser } = useContext(Context);
+  const { readOnly, loggedUser } = useContext(Context);
   const loggedIn = useMemo(() => !!loggedUser, [loggedUser]);
 
   const loginGoogleUser = async () => {
@@ -20,22 +20,24 @@ const NavBar = () => {
 
   return (
     <Stack direction="row" gap={1} justifyContent="end">
-      <StackItem>
-        {loggedUser && (
-          <Text as="span">{`Welcome ${loggedUser.displayName}`}</Text>
-        )}
-        <IconButton
-          size="md"
-          fontSize="lg"
-          variant="ghost"
-          color="current"
-          marginLeft="2"
-          onClick={loggedIn ? logoutGoogleUser : loginGoogleUser}
-          icon={<FaGoogle />}
-          aria-label={`Sign ${loggedIn ? "Out" : "In With Google"}`}
-          title={`Sign ${loggedIn ? "Out" : "In With Google"}`}
-        />
-      </StackItem>
+      {!readOnly && (
+        <StackItem>
+          {loggedUser && (
+            <Text as="span">{`Welcome ${loggedUser.displayName}`}</Text>
+          )}
+          <IconButton
+            size="md"
+            fontSize="lg"
+            variant="ghost"
+            color="current"
+            marginLeft="2"
+            onClick={loggedIn ? logoutGoogleUser : loginGoogleUser}
+            icon={<FaGoogle />}
+            aria-label={`Sign ${loggedIn ? "Out" : "In With Google"}`}
+            title={`Sign ${loggedIn ? "Out" : "In With Google"}`}
+          />
+        </StackItem>
+      )}
       <StackItem>
         <ColorModeSwitcher />
       </StackItem>
