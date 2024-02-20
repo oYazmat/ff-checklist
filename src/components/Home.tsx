@@ -8,7 +8,7 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
-import { ref, child, get, update } from "firebase/database";
+import { ref, child, get, update, DataSnapshot } from "firebase/database";
 import Categories from "./Categories";
 import { exportAsImage } from "../utils/exportAsImage";
 import ActionButtons from "./ActionButtons";
@@ -26,8 +26,14 @@ const Home = () => {
   const [completed, setCompleted] = useState<string[]>([]);
   const exportRef = useRef<HTMLDivElement>(null);
   const { colorMode } = useColorMode();
-  const { readOnly, authenticating, loaded, updateLoaded, loggedUser } =
-    useContext(Context);
+  const {
+    readOnly,
+    profileIdToLoad,
+    authenticating,
+    loaded,
+    updateLoaded,
+    loggedUser,
+  } = useContext(Context);
   const dbRef = ref(db);
 
   useEffect(() => {
@@ -37,23 +43,25 @@ const Home = () => {
   }, [loggedUser]);
 
   useEffect(() => {
-    if (!authenticating && !loaded) {
-      if (loggedUser) {
-        get(child(dbRef, `completed/${loggedUser.uid}`)).then((snapshot) => {
-          const dbStoredData = snapshot.exists() ? snapshot.val() : [];
+    if (readOnly) {
+      get(child(dbRef, `completed/${profileIdToLoad}`)).then(
+        handleDbDataLoaded
+      );
+    } else {
+      if (!authenticating && !loaded) {
+        if (loggedUser) {
+          get(child(dbRef, `completed/${loggedUser.uid}`)).then(
+            handleDbDataLoaded
+          );
+        } else {
+          const localStoredData = localStorage.getItem("completed");
 
-          setCompleted(dbStoredData);
+          if (localStoredData !== null) {
+            setCompleted(JSON.parse(localStoredData));
+          }
 
           updateLoaded(true);
-        });
-      } else {
-        const localStoredData = localStorage.getItem("completed");
-
-        if (localStoredData !== null) {
-          setCompleted(JSON.parse(localStoredData));
         }
-
-        updateLoaded(true);
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -71,6 +79,14 @@ const Home = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authenticating, completed]);
+
+  const handleDbDataLoaded = (snapshot: DataSnapshot) => {
+    const dbStoredData = snapshot.exists() ? snapshot.val() : [];
+
+    setCompleted(dbStoredData);
+
+    updateLoaded(true);
+  };
 
   const handleCompletedDisplayClick = () => {
     setShowCompleted((prev) => !prev);
