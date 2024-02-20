@@ -34,6 +34,7 @@ export interface IBadge {
 }
 
 export interface IContext {
+  authenticating: Boolean;
   loaded: Boolean;
   updateLoaded: Function;
   loggedUser: User | null;

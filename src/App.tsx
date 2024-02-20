@@ -8,12 +8,14 @@ import { auth } from "./firebase";
 
 export const App = () => {
   const [loaded, setLoaded] = useState(false);
+  const [authenticating, setAuthenticating] = useState(true);
   const [loggedUser, setLoggedUser] = useState<User | null>(null);
 
   auth.onAuthStateChanged((user) => {
     if (loggedUser?.uid !== user?.uid) {
       setLoggedUser(user);
     }
+    setAuthenticating(false);
   });
 
   const updateLoaded = (newLoadedValue: boolean) => {
@@ -22,7 +24,9 @@ export const App = () => {
 
   return (
     <ChakraProvider theme={theme}>
-      <Context.Provider value={{ loaded, updateLoaded, loggedUser }}>
+      <Context.Provider
+        value={{ authenticating, loaded, updateLoaded, loggedUser }}
+      >
         <Box textAlign="center" fontSize="xl">
           <Grid minH="100vh" p={3}>
             <NavBar />

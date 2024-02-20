@@ -26,7 +26,8 @@ const Home = () => {
   const [completed, setCompleted] = useState<string[]>([]);
   const exportRef = useRef<HTMLDivElement>(null);
   const { colorMode } = useColorMode();
-  const { loaded, updateLoaded, loggedUser } = useContext(Context);
+  const { authenticating, loaded, updateLoaded, loggedUser } =
+    useContext(Context);
   const dbRef = ref(db);
 
   useEffect(() => {
@@ -36,7 +37,7 @@ const Home = () => {
   }, [loggedUser]);
 
   useEffect(() => {
-    if (!loaded) {
+    if (!authenticating && !loaded) {
       if (loggedUser) {
         get(child(dbRef, `completed/${loggedUser.uid}`)).then((snapshot) => {
           const dbStoredData = snapshot.exists() ? snapshot.val() : [];
@@ -56,10 +57,10 @@ const Home = () => {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loaded]);
+  }, [authenticating, loaded]);
 
   useEffect(() => {
-    if (loaded) {
+    if (!authenticating && loaded) {
       if (loggedUser) {
         update(dbRef, {
           [`completed/${loggedUser.uid}`]: completed,
@@ -69,7 +70,7 @@ const Home = () => {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [completed]);
+  }, [authenticating, completed]);
 
   const handleCompletedDisplayClick = () => {
     setShowCompleted((prev) => !prev);
@@ -103,7 +104,7 @@ const Home = () => {
     exportAsImage(exportRef.current, "ff-checklist", colorMode);
   };
 
-  if (!loaded) {
+  if (authenticating || !loaded) {
     return <Loader />;
   }
 
