@@ -15,9 +15,9 @@ import ActionButtons from "./ActionButtons";
 import Badges from "./Badges";
 import { Context } from "../Context";
 import { db } from "../firebase";
+import Loader from "./Loader";
 
 const Home = () => {
-  const [loaded, setLoaded] = useState(false);
   const [showMissing, setShowMissing] = useState(true);
   const [showCompleted, setShowCompleted] = useState(true);
   const [showDLC, setShowDLC] = useState(true);
@@ -26,12 +26,13 @@ const Home = () => {
   const [completed, setCompleted] = useState<string[]>([]);
   const exportRef = useRef<HTMLDivElement>(null);
   const { colorMode } = useColorMode();
-  const { loggedUser } = useContext(Context);
+  const { loaded, updateLoaded, loggedUser } = useContext(Context);
   const dbRef = ref(db);
 
   useEffect(() => {
-    setLoaded(false);
+    updateLoaded(false);
     setCompleted([]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedUser]);
 
   useEffect(() => {
@@ -42,7 +43,7 @@ const Home = () => {
 
           setCompleted(dbStoredData);
 
-          setLoaded(true);
+          updateLoaded(true);
         });
       } else {
         const localStoredData = localStorage.getItem("completed");
@@ -51,7 +52,7 @@ const Home = () => {
           setCompleted(JSON.parse(localStoredData));
         }
 
-        setLoaded(true);
+        updateLoaded(true);
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -101,6 +102,10 @@ const Home = () => {
   const handleScreenshotClick = () => {
     exportAsImage(exportRef.current, "ff-checklist", colorMode);
   };
+
+  if (!loaded) {
+    return <Loader />;
+  }
 
   return (
     <Stack gap={3}>
