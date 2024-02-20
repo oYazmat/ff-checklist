@@ -1,6 +1,8 @@
 import { Button, StackItem, Stack } from "@chakra-ui/react";
-import { DownloadIcon } from "@chakra-ui/icons";
+import { DownloadIcon, CopyIcon } from "@chakra-ui/icons";
 import ShowButton from "./ShowButton";
+import { useContext } from "react";
+import { Context } from "../Context";
 
 interface IActionButtonsProps {
   showMissing: boolean;
@@ -17,6 +19,19 @@ interface IActionButtonsProps {
 }
 
 const ActionButtons = (props: IActionButtonsProps) => {
+  const { loggedUser } = useContext(Context);
+
+  const handleCopyToClipboard = () => {
+    if (loggedUser) {
+      // TODO: make link dynamic
+      const link = `https://oyazmat.github.io/ff-checklist/?id=${loggedUser.uid}`;
+
+      navigator.clipboard.writeText(link);
+
+      alert(`Link copied: ${link}`);
+    }
+  };
+
   return (
     <Stack direction="row" gap={1} justifyContent="center">
       <StackItem>
@@ -59,6 +74,13 @@ const ActionButtons = (props: IActionButtonsProps) => {
           Take a Screenshot
         </Button>
       </StackItem>
+      {loggedUser && (
+        <StackItem>
+          <Button leftIcon={<CopyIcon />} onClick={handleCopyToClipboard}>
+            Copy link to clipboard
+          </Button>
+        </StackItem>
+      )}
     </Stack>
   );
 };
