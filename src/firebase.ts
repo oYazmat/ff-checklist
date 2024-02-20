@@ -1,5 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getDatabase } from "firebase/database";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { firebaseConfig } from "./firebase.config.dev";
 
@@ -19,5 +20,8 @@ provider.setCustomParameters({
 
 // Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);
+export const db = getDatabase(app);
+
 export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+
 export default app;

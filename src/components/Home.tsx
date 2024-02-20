@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import {
   StackItem,
   Stack,
@@ -7,11 +7,14 @@ import {
   Text,
   Heading,
 } from "@chakra-ui/react";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
+import { ref, child, get, update } from "firebase/database";
 import Categories from "./Categories";
 import { exportAsImage } from "../utils/exportAsImage";
 import ActionButtons from "./ActionButtons";
-import { ExternalLinkIcon } from "@chakra-ui/icons";
 import Badges from "./Badges";
+import { Context } from "../Context";
+import { db } from "../firebase";
 
 const Home = () => {
   const [loaded, setLoaded] = useState(false);
@@ -23,20 +26,49 @@ const Home = () => {
   const [completed, setCompleted] = useState<string[]>([]);
   const exportRef = useRef<HTMLDivElement>(null);
   const { colorMode } = useColorMode();
+  const { loggedUser } = useContext(Context);
+  const dbRef = ref(db);
 
   useEffect(() => {
-    const stored = localStorage.getItem("completed");
-    if (stored !== null) {
-      setCompleted(JSON.parse(stored));
+    setLoaded(false);
+    setCompleted([]);
+  }, [loggedUser]);
+
+  useEffect(() => {
+    if (!loaded) {
+      if (loggedUser) {
+        get(child(dbRef, `completed/${loggedUser.uid}`)).then((snapshot) => {
+          const dbStoredData = snapshot.exists() ? snapshot.val() : [];
+
+          setCompleted(dbStoredData);
+
+          setLoaded(true);
+        });
+      } else {
+        const localStoredData = localStorage.getItem("completed");
+
+        if (localStoredData !== null) {
+          setCompleted(JSON.parse(localStoredData));
+        }
+
+        setLoaded(true);
+      }
     }
-    setLoaded(true);
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loaded]);
 
   useEffect(() => {
     if (loaded) {
-      localStorage.setItem("completed", JSON.stringify(completed));
+      if (loggedUser) {
+        update(dbRef, {
+          [`completed/${loggedUser.uid}`]: completed,
+        });
+      } else {
+        localStorage.setItem("completed", JSON.stringify(completed));
+      }
     }
-  }, [loaded, completed]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [completed]);
 
   const handleCompletedDisplayClick = () => {
     setShowCompleted((prev) => !prev);
