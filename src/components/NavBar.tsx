@@ -1,4 +1,4 @@
-import { IconButton, Stack, StackItem, Text } from "@chakra-ui/react";
+import { Button, Stack, StackItem, Text } from "@chakra-ui/react";
 import { FaGoogle } from "react-icons/fa";
 import { useContext, useMemo } from "react";
 import { signOut } from "firebase/auth";
@@ -25,17 +25,14 @@ const NavBar = () => {
           {loggedUser && (
             <Text as="span">{`Welcome ${loggedUser.displayName}`}</Text>
           )}
-          <IconButton
-            size="md"
-            fontSize="lg"
+          <Button
+            leftIcon={<FaGoogle />}
             variant="ghost"
-            color="current"
             marginLeft="2"
             onClick={loggedIn ? logoutGoogleUser : loginGoogleUser}
-            icon={<FaGoogle />}
-            aria-label={`Sign ${loggedIn ? "Out" : "In With Google"}`}
-            title={`Sign ${loggedIn ? "Out" : "In With Google"}`}
-          />
+          >
+            {`Sign ${loggedIn ? "Out" : "In With GMail"}`}
+          </Button>
         </StackItem>
       )}
       <StackItem>
