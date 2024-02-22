@@ -27,7 +27,9 @@ const ActionButtons = (props: IActionButtonsProps) => {
 
       navigator.clipboard.writeText(link);
 
-      alert(`Link copied: ${link}`);
+      alert(
+        `Link automatically copied to your clipboard:\n\n${link}\n\nDon't forget to post it in the PSNP forum thread!`
+      );
     }
   };
 
