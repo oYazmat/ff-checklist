@@ -1,4 +1,4 @@
-import { ChakraProvider, Box, Grid, theme } from "@chakra-ui/react";
+import { ChakraProvider, Box, Grid, theme, GridItem } from "@chakra-ui/react";
 import { User } from "firebase/auth";
 import { useState } from "react";
 import Home from "./components/Home";
@@ -39,9 +39,13 @@ export const App = () => {
         }}
       >
         <Box textAlign="center" fontSize="xl">
-          <Grid minH="100vh" p={3}>
-            <NavBar />
-            <Home />
+          <Grid minH="100vh" p={3} gap={12}>
+            <GridItem>
+              <NavBar />
+            </GridItem>
+            <GridItem>
+              <Home />
+            </GridItem>
           </Grid>
         </Box>
       </Context.Provider>
