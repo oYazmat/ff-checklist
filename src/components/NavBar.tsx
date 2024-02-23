@@ -41,7 +41,7 @@ const NavBar = () => {
 
   return (
     <Flex minWidth="max-content" alignItems="center" gap={2}>
-      {loggedUser && (
+      {!readOnly && loggedUser && (
         <Stack gap={2} direction="row">
           <StackItem>
             <Text as="span" fontWeight="bold">
@@ -59,7 +59,7 @@ const NavBar = () => {
         </Stack>
       )}
       <Spacer />
-      {loggedUser && (
+      {!readOnly && loggedUser && (
         <Text as="span">{`Welcome ${loggedUser.displayName}`}</Text>
       )}
       <ButtonGroup gap={2}>
