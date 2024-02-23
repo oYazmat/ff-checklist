@@ -8,19 +8,46 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { FaGoogle } from "react-icons/fa";
-import { useContext, useMemo } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { signOut } from "firebase/auth";
 import { ColorModeSwitcher } from "../ColorModeSwitcher";
-import { auth, signInWithGooglePopup } from "../firebase";
+import { auth, db, signInWithGooglePopup } from "../firebase";
 import { Context } from "../Context";
 import { CopyIcon } from "@chakra-ui/icons";
+import { child, get, ref } from "firebase/database";
+import { IProfile } from "../typings";
+import UsernameModal from "./UsernameModal";
 
 const NavBar = () => {
-  const { readOnly, loggedUser } = useContext(Context);
+  const [profile, setProfile] = useState<IProfile | null>(null);
+  const [profileLoaded, setProfileLoaded] = useState(false);
+  const { readOnly, loggedUser, updateAuthenticating } = useContext(Context);
   const loggedIn = useMemo(() => !!loggedUser, [loggedUser]);
+  const dbRef = ref(db);
+
+  useEffect(() => {
+    setProfile(null);
+    setProfileLoaded(false);
+  }, [loggedUser]);
+
+  useEffect(() => {
+    if (!readOnly && !profileLoaded && loggedUser) {
+      get(child(dbRef, `profile/${loggedUser.uid}`)).then((snapshot) => {
+        if (snapshot.exists()) {
+          setProfile(snapshot.val() as IProfile);
+        }
+        setProfileLoaded(true);
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loggedUser]);
 
   const loginGoogleUser = async () => {
+    updateAuthenticating(true);
+
     await signInWithGooglePopup();
+
+    updateAuthenticating(false);
   };
 
   const logoutGoogleUser = async () => {
@@ -37,6 +64,10 @@ const NavBar = () => {
         `Link automatically copied to your clipboard:\n\n${personalLink}\n\nDon't forget to notify about your updates in the PSNP forum thread!`
       );
     }
+  };
+
+  const handleProfileChange = (newProfile: IProfile) => {
+    setProfile(newProfile);
   };
 
   return (
@@ -59,9 +90,7 @@ const NavBar = () => {
         </Stack>
       )}
       <Spacer />
-      {!readOnly && loggedUser && (
-        <Text as="span">{`Welcome ${loggedUser.displayName}`}</Text>
-      )}
+      {profile && <Text as="span">{`Welcome ${profile.username}`}</Text>}
       <ButtonGroup gap={2}>
         {!readOnly && (
           <Button
@@ -75,6 +104,10 @@ const NavBar = () => {
         )}
         <ColorModeSwitcher />
       </ButtonGroup>
+      <UsernameModal
+        isOpen={!readOnly && profileLoaded && !profile}
+        onProfileChange={handleProfileChange}
+      />
     </Flex>
   );
 };

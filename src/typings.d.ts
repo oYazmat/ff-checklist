@@ -37,7 +37,12 @@ export interface IContext {
   profileIdToLoad: String | null;
   readOnly: boolean;
   authenticating: boolean;
+  updateAuthenticating: Function;
   loaded: boolean;
   updateLoaded: Function;
   loggedUser: User | null;
+}
+
+export interface IProfile {
+  username: String;
 }
