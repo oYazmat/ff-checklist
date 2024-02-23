@@ -18,6 +18,7 @@ import { db } from "../firebase";
 import Loader from "./Loader";
 
 const Home = () => {
+  const [saveChanges, setSaveChanges] = useState(false);
   const [showMissing, setShowMissing] = useState(true);
   const [showCompleted, setShowCompleted] = useState(true);
   const [showDLC, setShowDLC] = useState(true);
@@ -26,19 +27,12 @@ const Home = () => {
   const [completed, setCompleted] = useState<string[]>([]);
   const exportRef = useRef<HTMLDivElement>(null);
   const { colorMode } = useColorMode();
-  const {
-    readOnly,
-    profileIdToLoad,
-    authenticating,
-    loaded,
-    updateLoaded,
-    loggedUser,
-  } = useContext(Context);
+  const { readOnly, profileIdToLoad, loaded, updateLoaded, loggedUser } =
+    useContext(Context);
   const dbRef = ref(db);
 
   useEffect(() => {
     updateLoaded(false);
-    setCompleted([]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedUser]);
 
@@ -49,20 +43,18 @@ const Home = () => {
           handleDbDataLoaded
         );
       } else {
-        if (!authenticating) {
-          if (loggedUser) {
-            get(child(dbRef, `completed/${loggedUser.uid}`)).then(
-              handleDbDataLoaded
-            );
-          } else {
-            const localStoredData = localStorage.getItem("completed");
+        if (loggedUser) {
+          get(child(dbRef, `completed/${loggedUser.uid}`)).then(
+            handleDbDataLoaded
+          );
+        } else {
+          const localStoredData = localStorage.getItem("completed");
 
-            if (localStoredData !== null) {
-              setCompleted(JSON.parse(localStoredData));
-            }
-
-            updateLoaded(true);
+          if (localStoredData !== null) {
+            setCompleted(JSON.parse(localStoredData));
           }
+
+          updateLoaded(true);
         }
       }
     }
@@ -70,7 +62,7 @@ const Home = () => {
   }, [loaded]);
 
   useEffect(() => {
-    if (!readOnly && !authenticating && loaded) {
+    if (saveChanges) {
       if (loggedUser) {
         update(dbRef, {
           [`completed/${loggedUser.uid}`]: completed,
@@ -78,9 +70,11 @@ const Home = () => {
       } else {
         localStorage.setItem("completed", JSON.stringify(completed));
       }
+
+      setSaveChanges(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [completed]);
+  }, [saveChanges]);
 
   const handleDbDataLoaded = (snapshot: DataSnapshot) => {
     const dbStoredData = snapshot.exists() ? snapshot.val() : [];
@@ -116,13 +110,14 @@ const Home = () => {
     } else {
       setCompleted((prev) => [...prev, id]);
     }
+    setSaveChanges(true);
   };
 
   const handleScreenshotClick = () => {
     exportAsImage(exportRef.current, "ff-checklist", colorMode);
   };
 
-  if (authenticating || !loaded) {
+  if (!loaded) {
     return <Loader />;
   }
 

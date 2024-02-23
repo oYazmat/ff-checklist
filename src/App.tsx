@@ -50,12 +50,12 @@ export const App = () => {
       >
         <Box textAlign="center" fontSize="xl">
           <Grid minH="100vh" p={3} gap={12}>
-            {!appReady && (
+            {(!appReady || authenticating) && (
               <GridItem>
                 <Loader />
               </GridItem>
             )}
-            {appReady && (
+            {appReady && !authenticating && (
               <>
                 <GridItem>
                   <NavBar />
