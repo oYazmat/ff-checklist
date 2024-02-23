@@ -43,29 +43,31 @@ const Home = () => {
   }, [loggedUser]);
 
   useEffect(() => {
-    if (readOnly) {
-      get(child(dbRef, `completed/${profileIdToLoad}`)).then(
-        handleDbDataLoaded
-      );
-    } else {
-      if (!authenticating && !loaded) {
-        if (loggedUser) {
-          get(child(dbRef, `completed/${loggedUser.uid}`)).then(
-            handleDbDataLoaded
-          );
-        } else {
-          const localStoredData = localStorage.getItem("completed");
+    if (!loaded) {
+      if (readOnly) {
+        get(child(dbRef, `completed/${profileIdToLoad}`)).then(
+          handleDbDataLoaded
+        );
+      } else {
+        if (!authenticating) {
+          if (loggedUser) {
+            get(child(dbRef, `completed/${loggedUser.uid}`)).then(
+              handleDbDataLoaded
+            );
+          } else {
+            const localStoredData = localStorage.getItem("completed");
 
-          if (localStoredData !== null) {
-            setCompleted(JSON.parse(localStoredData));
+            if (localStoredData !== null) {
+              setCompleted(JSON.parse(localStoredData));
+            }
+
+            updateLoaded(true);
           }
-
-          updateLoaded(true);
         }
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [authenticating, loaded]);
+  }, [loaded]);
 
   useEffect(() => {
     if (!readOnly && !authenticating && loaded) {
@@ -78,7 +80,7 @@ const Home = () => {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [authenticating, completed]);
+  }, [completed]);
 
   const handleDbDataLoaded = (snapshot: DataSnapshot) => {
     const dbStoredData = snapshot.exists() ? snapshot.val() : [];
