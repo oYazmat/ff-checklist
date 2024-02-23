@@ -13,7 +13,7 @@ import { signOut } from "firebase/auth";
 import { ColorModeSwitcher } from "../ColorModeSwitcher";
 import { auth, db, signInWithGooglePopup } from "../firebase";
 import { Context } from "../Context";
-import { CopyIcon } from "@chakra-ui/icons";
+import { CopyIcon, StarIcon } from "@chakra-ui/icons";
 import { child, get, ref } from "firebase/database";
 import { IProfile } from "../typings";
 import UsernameModal from "./UsernameModal";
@@ -70,6 +70,13 @@ const NavBar = () => {
     setProfile(newProfile);
   };
 
+  const handleLeaderBoardClick = () => {
+    window.open(
+      "https://docs.google.com/spreadsheets/d/1gbnJIZNef8mh2n8nRyWHFjqVJaV4um2niTfVL0Z1jIM",
+      "_blank"
+    );
+  };
+
   return (
     <Flex minWidth="max-content" alignItems="center" gap={2}>
       {!readOnly && loggedUser && (
@@ -87,6 +94,13 @@ const NavBar = () => {
               Copy link to clipboard
             </Button>
           </StackItem>
+          {loggedIn && (
+            <StackItem>
+              <Button leftIcon={<StarIcon />} onClick={handleLeaderBoardClick}>
+                View Leader Board
+              </Button>
+            </StackItem>
+          )}
         </Stack>
       )}
       <Spacer />
