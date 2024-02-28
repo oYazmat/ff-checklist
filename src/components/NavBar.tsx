@@ -97,7 +97,7 @@ const NavBar = () => {
           {loggedIn && (
             <StackItem>
               <Button leftIcon={<StarIcon />} onClick={handleLeaderBoardClick}>
-                View Leader Board
+                View Leaderboard
               </Button>
             </StackItem>
           )}
