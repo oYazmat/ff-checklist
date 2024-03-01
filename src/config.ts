@@ -488,6 +488,24 @@ const titlesConfig: ITitle[] = [
     type: TYPE.UNOFFICIAL,
     logo: "theatrhythm.png",
   },
+  {
+    id: "jp-only",
+    title: "JP Only",
+    type: TYPE.SPECIAL_BADGE,
+    logo: "jp-only.png",
+  },
+  {
+    id: "manaman",
+    title: "Manaman",
+    type: TYPE.SPECIAL_BADGE,
+    logo: "manaman.png",
+  },
+  {
+    id: "zetaflare",
+    title: "Zetaflare",
+    type: TYPE.SPECIAL_BADGE,
+    logo: "zetaflare.png",
+  },
 ];
 
 const badgesConfig: IBadge[] = [

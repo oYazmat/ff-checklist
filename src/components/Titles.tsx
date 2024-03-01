@@ -91,11 +91,13 @@ const Titles = (props: ITitlesProps) => {
                     title={title.title}
                   />
                 </StackItem>
-                <StackItem>
-                  <Text fontSize="xs" fontWeight="bold">
-                    {title.plate_forms.join(" - ")}
-                  </Text>
-                </StackItem>
+                {title.plate_forms && (
+                  <StackItem>
+                    <Text fontSize="xs" fontWeight="bold">
+                      {title.plate_forms.join(" - ")}
+                    </Text>
+                  </StackItem>
+                )}
                 <StackItem>
                   <Text fontSize="xs" fontWeight="bold">
                     {title.title}
