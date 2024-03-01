@@ -8,12 +8,14 @@ interface IActionButtonsProps {
   showDLC: boolean;
   showComingSoon: boolean;
   showBadges: boolean;
+  showSpecialBadges: boolean;
   onMissingDisplayClick: () => void;
   onCompletedDisplayClick: () => void;
   onDLCDisplayClick: () => void;
   onScreenshotClick: () => void;
   onComingSoonDisplayClick: () => void;
   onBadgesDisplayClick: () => void;
+  onSpecialBadgesDisplayClick: () => void;
 }
 
 const ActionButtons = (props: IActionButtonsProps) => {
@@ -52,6 +54,13 @@ const ActionButtons = (props: IActionButtonsProps) => {
           show={props.showBadges}
           title="Badges"
           onClick={props.onBadgesDisplayClick}
+        />
+      </StackItem>
+      <StackItem>
+        <ShowButton
+          show={props.showSpecialBadges}
+          title="Special Badges"
+          onClick={props.onSpecialBadgesDisplayClick}
         />
       </StackItem>
       <StackItem>

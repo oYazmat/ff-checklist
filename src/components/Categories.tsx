@@ -8,6 +8,7 @@ interface ICategoriesProps {
   showCompleted: boolean;
   showDLC: boolean;
   showComingSoon: boolean;
+  showSpecialBadges: boolean;
   onCheckboxChange: (id: string) => void;
 }
 
@@ -28,6 +29,10 @@ const Categories = (props: ICategoriesProps) => {
 
   const xivDLCTitles = titlesConfig.filter(
     (title) => title.type === TYPE.XIV_PS5_DLC
+  );
+
+  const specialBadges = titlesConfig.filter(
+    (title) => title.type === TYPE.SPECIAL_BADGE
   );
 
   return (
@@ -84,6 +89,18 @@ const Categories = (props: ICategoriesProps) => {
             showComingSoon={props.showComingSoon}
           />
         </>
+      )}
+
+      {props.showSpecialBadges && (
+        <Titles
+          header="Special Badges"
+          titles={specialBadges}
+          completed={props.completed}
+          onCheckboxChange={props.onCheckboxChange}
+          showMissing={props.showMissing}
+          showCompleted={props.showCompleted}
+          showComingSoon={props.showComingSoon}
+        />
       )}
     </>
   );

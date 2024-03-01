@@ -13,12 +13,13 @@ export enum TYPE {
   UNOFFICIAL = "unofficial",
   DLC = "dlc",
   XIV_PS5_DLC = "xiv-ps5-dlc",
+  SPECIAL_BADGE = "special-badge",
 }
 
 export interface ITitle {
   id: string;
   title: string;
-  plate_forms: PLATE_FORM[];
+  plate_forms?: PLATE_FORM[];
   type: TYPE;
   logo: string;
   unreleased?: boolean;
