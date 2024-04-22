@@ -47,3 +47,8 @@ export interface IContext {
 export interface IProfile {
   username: String;
 }
+
+export interface IFeature {
+  name: String;
+  enabled: boolean;
+}

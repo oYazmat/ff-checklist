@@ -1,4 +1,11 @@
-import { ITitle, IBadge, PLATE_FORM, TYPE } from "./typings.d";
+import { ITitle, IBadge, PLATE_FORM, TYPE, IFeature } from "./typings.d";
+
+const featuresConfig: IFeature[] = [
+  {
+    name: "Badges",
+    enabled: false,
+  },
+];
 
 const titlesConfig: ITitle[] = [
   {
@@ -478,8 +485,7 @@ const titlesConfig: ITitle[] = [
     title: "Final Fantasy XVI - The Rising Tide",
     plate_forms: [PLATE_FORM.PS5],
     type: TYPE.DLC,
-    logo: "coming-soon.png",
-    unreleased: true,
+    logo: "16-dlc-2.png",
   },
   {
     id: "theatrhythm",
@@ -600,4 +606,4 @@ const badgesConfig: IBadge[] = [
   },
 ];
 
-export { titlesConfig, badgesConfig };
+export { featuresConfig, titlesConfig, badgesConfig };
