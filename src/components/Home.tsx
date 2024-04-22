@@ -9,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { ref, child, get, update, DataSnapshot } from "firebase/database";
+
 import Categories from "./Categories";
 import { exportAsImage } from "../utils/exportAsImage";
 import ActionButtons from "./ActionButtons";
@@ -16,6 +17,7 @@ import Badges from "./Badges";
 import { Context } from "../Context";
 import { db } from "../firebase";
 import Loader from "./Loader";
+import { isFeatureEnable } from "../utils/feature";
 
 const Home = () => {
   const [saveChanges, setSaveChanges] = useState(false);
@@ -150,7 +152,7 @@ const Home = () => {
       </StackItem>
       <StackItem>
         <Stack gap={3} ref={exportRef}>
-          {showBadges && (
+          {isFeatureEnable('Badges') && showBadges && (
             <StackItem>
               <Badges completed={completed} />
             </StackItem>

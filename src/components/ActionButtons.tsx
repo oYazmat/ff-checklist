@@ -1,6 +1,8 @@
 import { Button, StackItem, Stack } from "@chakra-ui/react";
 import { DownloadIcon } from "@chakra-ui/icons";
+
 import ShowButton from "./ShowButton";
+import { isFeatureEnable } from "../utils/feature";
 
 interface IActionButtonsProps {
   showMissing: boolean;
@@ -49,13 +51,15 @@ const ActionButtons = (props: IActionButtonsProps) => {
           onClick={props.onComingSoonDisplayClick}
         />
       </StackItem>
-      <StackItem>
-        <ShowButton
-          show={props.showBadges}
-          title="Badges"
-          onClick={props.onBadgesDisplayClick}
-        />
-      </StackItem>
+      {isFeatureEnable("Badges") && (
+        <StackItem>
+          <ShowButton
+            show={props.showBadges}
+            title="Badges"
+            onClick={props.onBadgesDisplayClick}
+          />
+        </StackItem>
+      )}
       <StackItem>
         <ShowButton
           show={props.showSpecialBadges}
