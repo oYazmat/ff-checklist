@@ -307,8 +307,7 @@ const titlesConfig: ITitle[] = [
     title: "Final Fantasy XIV: Dawntrail",
     plate_forms: [PLATE_FORM.PS5],
     type: TYPE.XIV_PS5_DLC,
-    logo: "coming-soon.png",
-    unreleased: true,
+    logo: "14-2-dlc-11.png",
   },
   {
     id: "15",
