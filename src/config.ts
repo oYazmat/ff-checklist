@@ -310,6 +310,13 @@ const titlesConfig: ITitle[] = [
     logo: "14-2-dlc-11.png",
   },
   {
+    id: "14-2-dlc-12",
+    title: "Final Fantasy XIV: Crossroads",
+    plate_forms: [PLATE_FORM.PS5],
+    type: TYPE.XIV_PS5_DLC,
+    logo: "14-2-dlc-12.png",
+  },
+  {
     id: "15",
     title: "Final Fantasy XV",
     plate_forms: [PLATE_FORM.PS4],
