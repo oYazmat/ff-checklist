@@ -335,6 +335,13 @@ const titlesConfig: ITitle[] = [
     title: "Final Fantasy XIV: Into the Mist",
     plate_forms: [PLATE_FORM.PS5],
     type: TYPE.XIV_PS5_DLC,
+    logo: "14-2-dlc-15.png",
+  },
+  {
+    id: "14-2-dlc-16",
+    title: "Final Fantasy XIV: Trail to the Heavens",
+    plate_forms: [PLATE_FORM.PS5],
+    type: TYPE.XIV_PS5_DLC,
     logo: "coming-soon.png",
     unreleased: true,
   },
