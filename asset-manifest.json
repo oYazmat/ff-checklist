@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/ff-checklist/static/js/main.a7af7033.js",
+    "main.js": "/ff-checklist/static/js/main.8f70880a.js",
     "static/js/453.92f1bf08.chunk.js": "/ff-checklist/static/js/453.92f1bf08.chunk.js",
     "index.html": "/ff-checklist/index.html",
-    "main.a7af7033.js.map": "/ff-checklist/static/js/main.a7af7033.js.map",
+    "main.8f70880a.js.map": "/ff-checklist/static/js/main.8f70880a.js.map",
     "453.92f1bf08.chunk.js.map": "/ff-checklist/static/js/453.92f1bf08.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.a7af7033.js"
+    "static/js/main.8f70880a.js"
   ]
 }
