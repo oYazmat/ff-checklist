@@ -346,6 +346,14 @@ const titlesConfig: ITitle[] = [
     unreleased: true,
   },
   {
+    id: "14-2-dlc-17",
+    title: "Final Fantasy XIV: Evercold",
+    plate_forms: [PLATE_FORM.PS5],
+    type: TYPE.XIV_PS5_DLC,
+    logo: "coming-soon.png",
+    unreleased: true,
+  },
+  {
     id: "15",
     title: "Final Fantasy XV",
     plate_forms: [PLATE_FORM.PS4],
