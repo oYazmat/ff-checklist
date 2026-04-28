@@ -342,8 +342,7 @@ const titlesConfig: ITitle[] = [
     title: "Final Fantasy XIV: Trail to the Heavens",
     plate_forms: [PLATE_FORM.PS5],
     type: TYPE.XIV_PS5_DLC,
-    logo: "coming-soon.png",
-    unreleased: true,
+    logo: "14-2-dlc-16.png",
   },
   {
     id: "14-2-dlc-17",
