@@ -551,6 +551,22 @@ const titlesConfig: ITitle[] = [
     logo: "fft-2.png",
   },
   {
+    id: "ffr",
+    title: "Final Fantasy Resonance",
+    plate_forms: [PLATE_FORM.PS5],
+    type: TYPE.SPIN_OFF,
+    logo: "coming-soon.png",
+    unreleased: true,
+  },
+  {
+    id: "07-7",
+    title: "Final Fantasy VII Revelation",
+    plate_forms: [PLATE_FORM.PS5],
+    type: TYPE.MAINLINE,
+    logo: "coming-soon.png",
+    unreleased: true,
+  },
+  {
     id: "jp-only",
     title: "JP Only",
     type: TYPE.SPECIAL_BADGE,
