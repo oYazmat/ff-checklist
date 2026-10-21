@@ -555,8 +555,7 @@ const titlesConfig: ITitle[] = [
     title: "Final Fantasy Resonance",
     plate_forms: [PLATE_FORM.PS5],
     type: TYPE.SPIN_OFF,
-    logo: "coming-soon.png",
-    unreleased: true,
+    logo: "ffr.png"
   },
   {
     id: "07-7",
