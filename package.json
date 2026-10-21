@@ -8,13 +8,6 @@
     "@chakra-ui/react": "^2.4.2",
     "@emotion/react": "^11.0.0",
     "@emotion/styled": "^11.0.0",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.0.1",
-    "@testing-library/user-event": "^14.1.0",
-    "@types/jest": "^28.1.1",
-    "@types/node": "^12.0.0",
-    "@types/react": "^18.0.9",
-    "@types/react-dom": "^18.0.4",
     "firebase": "^10.8.0",
     "framer-motion": "^6.2.9",
     "html2canvas": "^1.4.1",
@@ -22,8 +15,6 @@
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-icons": "^3.0.0",
-    "react-scripts": "5.0.1",
-    "typescript": "^4.6.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -52,7 +43,16 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "cross-env": "^7.0.3",
-    "gh-pages": "^5.0.0"
+    "gh-pages": "^5.0.0",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.0.1",
+    "@testing-library/user-event": "^14.1.0",
+    "@types/jest": "^28.1.1",
+    "@types/node": "^12.0.0",
+    "@types/react": "^18.0.9",
+    "@types/react-dom": "^18.0.4",
+    "react-scripts": "5.0.1",
+    "typescript": "^4.6.3"
   },
   "resolutions": {
     "react-scripts/**/postcss": "^8.4.31",
